@@ -4,11 +4,9 @@ import './Login.css';
 
 function Login() {
   return (
-    <di>
-      <Header />
-    
+    <di> 
     <div className="login-page">
-    <a href="/signup">Hesabınız yok mu? Kayıt olun</a>
+    
       <div className="login-sections">
 
         {/* Öğrenci Giriş Bölümü */}
@@ -21,6 +19,7 @@ function Login() {
             <label>Password:</label>
             <input type="password" />
             <button type="submit">Log in</button>
+            <a href="/signup">Don't have an account? Sign up</a>
           </form>
         </div>
 
@@ -34,6 +33,7 @@ function Login() {
             <label>Password:</label>
             <input type="password" />
             <button type="submit">Log in</button>
+            <a href="/signup">Don't have an account? Sign up</a>
           </form>
         </div>
 

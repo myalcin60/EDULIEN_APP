@@ -21,28 +21,29 @@ function SignUp() {
 
   return (
     <div className="signup-container">
-      <h2>Kayıt Ol</h2>
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
         <input type="email" required />
-
-        <label>Şifre:</label>
+  
+        <label>Password:</label>
         <input type="password" required />
-
-        <label>Rol Seçin:</label>
+  
+        <label>Select Role:</label>
         <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="student">Öğrenci</option>
-          <option value="teacher">Öğretmen</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
         </select>
-
-        <button type="submit">Kayıt Ol</button>
+  
+        <button type="submit">Sign Up</button>
       </form>
-
+  
       <p>
-        Zaten hesabınız var mı? <Link to="/">Giriş yap</Link>
+        Already have an account? <Link to="/">Log in</Link>
       </p>
     </div>
   );
+  
 }
 
 export default SignUp;
