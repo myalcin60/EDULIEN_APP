@@ -1,70 +1,50 @@
+.login-page {
+  padding: 50px 20px;
+}
+
 .login-container {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-  }
-      
-  .login-container label {
-    display: block;
-    margin-bottom: 10px;
-    margin-top: 10px;
-   
-    font-weight: bold;
-    
-  }
-  
-  .login-container input {
-    width: 95%;
-    padding: 8px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-  
-  }
-  
-  .login-container button {
-    width: 100%;
-    padding: 10px;
-    background-color:#007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .login-container button:hover {
-    background-color: #0056b3;
-  }
-  .button-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  
-  .button-group button {
-    flex: 1;
-  }
-  .login-sections{
-    display: flex;
-    justify-content: space-around;
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .login-container > img{
-    width: 40%;
-   text-align:center;
-   margin-left: 30%;
-  }
-  a{
-    text-decoration: none;
-    color: black;
-    margin-top: 10px;
-  }
-  a:hover{
-    color:var(--accent-color);
-  }
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.login-container form button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Rol seçimi */
+.role-toggle {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.role-toggle button {
+  flex: 1;
+  margin: 0 5px;
+  background-color: var(--gray);
+  color: var(--dark);
+}
+
+.role-toggle button.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Rol resimleri */
+.role-image {
+  display: block;
+  width: 40%;
+  margin: 20px auto;
+}

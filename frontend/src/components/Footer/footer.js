@@ -4,11 +4,12 @@ import './Footer.css';
 function Footer(){
 return (
 <footer className="footer">
-    <nav>
-        <a href="edulien@yopmail.com" >em@il</a>
-        <a href="https://www.linkedin.com/">Linkedln</a>
-        <a href="https://www.youtube.com/">YouTube</a>
-    </nav>
+<p>© 2025 EDULIEN. All rights reserved.</p>
+<div class="footer-links">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Use</a>
+<a href="#">Help</a>
+</div>
 </footer>
 );
 }

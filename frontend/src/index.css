@@ -1,13 +1,59 @@
 :root {
-    --primary-color: #3ABCF8;
-    --secondary-color: #D2FEF6;
-    --accent-color: #ffc107;
+    --primary: #4aa5e8;
+    --secondary: #63d4ff;
+    --accent: #ffb84d;
+    --accent-secondary: #ff7e67;
+    --light: #f8fdff;
+    --dark: #505a69;
+    --gray: #e8f4fc;
+    --text: #505a69;
+
     --success-color: #28a745;
     --danger-color: #dc3545;
 
     --font-family : 'Goblin One' Tahoma, Geneva, Verdana, sans-serif;
 
-    --background-color:#dadee4;
+    --background-color:var(--gray);
     
 }
-
+/* Genel yapı */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  /* Inputlar */
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Butonlar */
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--accent);
+    color: white;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: var(--accent-secondary);
+  }
+  
+  /* Linkler */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a:hover {
+    color: var(--accent-secondary);
+  }
