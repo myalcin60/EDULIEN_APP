@@ -17,6 +17,8 @@ function SignUp() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          firstName,
+          lastName,
           email,
           password,
           role,
@@ -41,15 +43,21 @@ function SignUp() {
     }
   };
   
-
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
 
 
   return (
     <div className="signup-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
+        <label>First Name:</label>
+        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+        <label>Last Name:</label>
+        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+       
         <label>Email:</label>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
   

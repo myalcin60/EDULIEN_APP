@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Header from '../../components/Header/header';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,15 +12,42 @@ function Login() {
     setSelectedRole(role);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    if (selectedRole === 'student') {
-      navigate('/student-dashboard');
-    } else if (selectedRole === 'teacher') {
-      navigate('/teacher-dashboard');
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          role: selectedRole
+        })
+      });
+  
+      const data = await response.json();
+    
+  
+      if (response.ok) {
+        alert("Giriş başarılı!");
+  
+        if (selectedRole === 'student') {
+          navigate('/student-dashboard');
+        } else {
+          navigate('/teacher-dashboard');
+        }
+      } else {
+        alert(data.error || "Giriş başarısız.");
+      }
+    } catch (error) {
+      alert("Sunucuya bağlanırken bir hata oluştu.");
+      console.error("Login error:", error);
     }
   };
+  
 
   return (
     <div className="login-page">
@@ -49,6 +75,7 @@ function Login() {
           alt={selectedRole}  className="role-image" />
 
         <form onSubmit={handleLogin}>
+          
           <label>Email:</label>
           <input
             type="email"
