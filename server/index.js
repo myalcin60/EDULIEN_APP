@@ -74,14 +74,14 @@ app.post("/api/users", (req, res) => {
  // Login endpoint
 // Yeni login endpointi
 app.post("/api/login", (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password required!!" });
   }
 
   // Veritabanında kullanıcıyı arıyoruz
-  db.query("SELECT * FROM user WHERE email = ?", [email], (err, results) => {
+  db.query("SELECT * FROM user WHERE email = ? AND role = ?", [email, role], (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Server error", details: err });
     }
@@ -96,8 +96,10 @@ app.post("/api/login", (req, res) => {
       return res.status(401).json({ error: "Password is wrong!" });
     }
 
-    // Başarılı giriş
-    res.json({ message: "Login successful!", user });
+
+    res.json({ 
+      message: "Login successful!", 
+      userType: user.role });
   });
 });
 

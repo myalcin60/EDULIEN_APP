@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import TeacherDashboard from '../Teacher/TeacherDashboard';
 
 function Login() {
   const [selectedRole, setSelectedRole] = useState('student'); // varsayılan: student
@@ -34,9 +35,11 @@ function Login() {
       if (response.ok) {
         alert("Giriş başarılı!");
   
-        if (selectedRole === 'student') {
-          navigate('/student-dashboard');
+        if (data.userType === 'student') {
+         
+           navigate('/student-dashboard');
         } else {
+          
           navigate('/teacher-dashboard');
         }
       } else {
