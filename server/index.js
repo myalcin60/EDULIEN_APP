@@ -1,11 +1,9 @@
- const express = require("express");    // express framwork modul import edildi
- const cors = require("cors");         // bir web sayfasının başka bir domain'den gelen verilere erişmesine izin veren bir mekanizmadır. 
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const db = require("./config/db");
 
- require("dotenv").config();           // .env dosyasındaki çevre değişkenlerini kullanabilmek için bu modül yükleniyor
-
- const db = require("./config/db");   // Veritabanı bağlantısını ekledik veritabaninin yolunu belirledik
- 
-                                      // Veritabanında user tablosu yoksa oluştur
+// Veritabanında user tablosu oluştur (eğer yoksa)
 const createUserTable = `
 CREATE TABLE IF NOT EXISTS user (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -19,110 +17,37 @@ CREATE TABLE IF NOT EXISTS user (
 
 db.query(createUserTable, (err, result) => {
   if (err) {
-    console.error("User tablosu oluşturulamadı:", err);
+    console.error("Could not create User table:", err);
   } else {
-    console.log("User tablosu hazır! ✅");
+    console.log("User table is ready! ✅");
   }
 });
 
- const app = express();               // Burada, express() fonksiyonu ile bir Express uygulaması başlatılıyor ve app değişkenine atanıyor
+const app = express();
 
- // Middleware
- app.use(cors());
- app.use(express.json());
+// Middleware
+app.use(cors());
+app.use(express.json());
 
- // Routes
- app.get("/api", (req, res) => {
-   res.json({ message: "Edulien App API" });
- });
-
- // GET kullanicilari getirir
- // 🔸 Yeni test route (isteğe bağlı)
- app.get("/api/users", (req, res) => {
-   db.query("SELECT * FROM user", (err, results) => {
-     if (err) {
-       return res.status(500).json({ error: "Veri alınamadı", details: err });
-     }
-     res.json(results);
-   });
- });
-
-// 🔸 Kullanıcı kayıt (POST /api/users)
-app.post("/api/users", (req, res) => {
-  const {firstName,lastName, email, password, role } = req.body;
-
-  if (!firstName || !lastName || !email || !password || !role) {
-    return res.status(400).json({ message: "Eksik bilgi var." });
-  }
-
-  const sql = "INSERT INTO user (firstName,lastName, email, password,role) VALUES (?, ?, ?, ?, ?)";
-  const values = [firstName,lastName, email, password, role];
-
-  db.query(sql, values, (err, result) => {
-    if (err) {
-      console.error("Kayıt hatası:", err);
-      return res.status(500).json({ message: "Veritabanı hatası" });
-    }
-
-    res.status(201).json({ message: "Kayıt başarılı", userId: result.insertId });
-  });
+// Routes
+app.get("/api", (req, res) => {
+  res.json({ message: "Edulien App API" });
 });
 
- 
+const studentRoutes = require("./routes/student");
+app.use("/api/student", studentRoutes);
 
+const teacherRoutes = require("./routes/teacher");
+app.use("/api/teacher", teacherRoutes);
 
- // Login endpoint
-// Yeni login endpointi
-app.post("/api/login", (req, res) => {
-  const { email, password, role } = req.body;
+const authRoutes = require("./routes/auth");
+app.use("/api", authRoutes);
 
-  if (!email || !password) {
-    return res.status(400).json({ error: "Email and password required!!" });
-  }
+const profileRoutes = require("./routes/profile");
+app.use("/api", profileRoutes);
 
-  // Veritabanında kullanıcıyı arıyoruz
-  db.query("SELECT * FROM user WHERE email = ? AND role = ?", [email, role], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: "Server error", details: err });
-    }
-
-    if (results.length === 0) {
-      return res.status(401).json({ error: "There is no such user!" });
-    }
-
-    const user = results[0];
-
-    if (user.password !== password) {
-      return res.status(401).json({ error: "Password is wrong!" });
-    }
-
-
-    res.json({ 
-      message: "Login successful!", 
-      userType: user.role });
-  });
-});
-
-// EN SONDA server başlatılıyor
-const PORT = process.env.PORT || 5000;
+// Server
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

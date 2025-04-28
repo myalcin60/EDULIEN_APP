@@ -24,7 +24,7 @@ body {
     color: var(--text-color);
   }
   
-  /* Inputlar */
+  /* Inputs */
   input {
     width: 100%;
     padding: 8px;
@@ -33,7 +33,7 @@ body {
     box-sizing: border-box;
   }
   
-  /* Butonlar */
+  /* Buttons */
   button {
     padding: 10px;
     border: none;
@@ -48,7 +48,7 @@ body {
     background-color: var(--accent-secondary);
   }
   
-  /* Linkler */
+  /* Links */
   a {
     text-decoration: none;
     color: inherit;

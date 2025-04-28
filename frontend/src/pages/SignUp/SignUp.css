@@ -1,5 +1,5 @@
 .signup-container {
-  max-width: 400px;
+ max-width: 400px;
   margin: 80px auto;
   padding: 30px;
   border: 1px solid #ddd;
@@ -23,4 +23,14 @@
 .signup-container input,
 .signup-container select {
   border-radius: 5px;
+}
+
+.image-homePage{
+  margin: 80px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.image-homePage img{
+  width: 100%;    
+  height: auto;   
 }

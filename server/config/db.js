@@ -9,10 +9,10 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) {
-    console.error("MySQL bağlantı hatası:", err);
+    console.error("MySQL connection error:", err);
     return;
   }
-  console.log("MySQL veritabanına başarıyla bağlandı!");
+  console.log("Successfully connected to MySQL database!");
 });
 
 module.exports = connection;
