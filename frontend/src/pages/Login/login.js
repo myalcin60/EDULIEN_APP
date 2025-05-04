@@ -3,10 +3,11 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import {toast} from "react-toastify";
 import"react-toastify/ReactToastify.css";
+import { config, endpoints, headers, frontendMessages } from '../../config/index';
 
 
 function Login() {
-  const [selectedRole, setSelectedRole] = useState('student'); // default: student
+  const [selectedRole, setSelectedRole] = useState(config.ROLES.STUDENT); // default: student
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -19,10 +20,10 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`${config.API_BASE_URL}${endpoints.LOGIN}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type":headers.JSON['Content-Type']
         },
         body: JSON.stringify({
           email,
@@ -35,22 +36,22 @@ function Login() {
 
 
       if (response.ok) {
-        navigate("/dashboard"); 
-        toast.success("Login successful!", {autoClose : 2000});
+        navigate(endpoints.DASHBOARD); 
+        toast.success(frontendMessages.success.login, {autoClose : 2000});
         localStorage.setItem("userEmail", email);  //Save user email to localStorage
 
-        if (data.userType === 'student') {
+        if (data.userType === config.ROLES.STUDENT) {
 
-          navigate('/student-dashboard');
+          navigate(endpoints.STUDENT_DASHBOARD);
         } else {
 
-          navigate('/teacher-dashboard');
+          navigate(endpoints.TEACHER_DASHBOARD);
         }
       } else {
-        alert(data.error || "Login failed");
+        alert(data.error || frontendMessages.error.login);
       }
     } catch (error) {
-      alert("An error occurred while connecting to the server");
+      alert(frontendMessages.error.server);
       console.error("Login error:", error);
     }
   };
@@ -64,21 +65,21 @@ function Login() {
           {/* Role selection */}
           <div className="role-toggle">
             <button
-              className={selectedRole === 'student' ? 'active' : ''}
-              onClick={() => handleRoleClick('student')}
+              className={selectedRole === config.ROLES.STUDENT? 'active' : ''}
+              onClick={() => handleRoleClick(config.ROLES.STUDENT)}
             >
               Student
             </button>
             <button
-              className={selectedRole === 'teacher' ? 'active' : ''}
-              onClick={() => handleRoleClick('teacher')}
+              className={selectedRole === config.ROLES.TEACHER ? 'active' : ''}
+              onClick={() => handleRoleClick(config.ROLES.TEACHER)}
             >
               Teacher
             </button>
           </div>
           {/* Login Form */}
           <img
-            src={selectedRole === 'student' ? '/assets/OGRENCI.jpg' : '/assets/ogretmen.jpg'
+            src={selectedRole === config.ROLES.STUDENT ? '/assets/OGRENCI.jpg' : '/assets/ogretmen.jpg'
             }
             alt={selectedRole} className="role-image" />
 
@@ -102,7 +103,7 @@ function Login() {
 
             <button type="submit">Log in</button>
             <p>
-              Don't have an account? <a href="/signup">Sign up</a>
+              Don't have an account? <a href={`${endpoints.SIGN_UP}`}>Sign up</a>
             </p>
           </form>
         </div>

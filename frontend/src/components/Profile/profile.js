@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import {config,endpoints, frontendMessages} from '../../config/index';
+
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -6,14 +8,15 @@ const Profile = () => {
 
   useEffect(() => {
     if (!email) return;
+    
 
-    fetch(`http://localhost:5000/api/profile/${email}`)
+    fetch(`${config.API_BASE_URL}${endpoints.PROFILE}/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
       })
       .catch((error) => {
-        console.error("Profil verisi çekilemedi:", error);
+        console.error(frontendMessages.error.profileFetch, error);
       });
   }, [email]);
 

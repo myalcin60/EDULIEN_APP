@@ -2,19 +2,22 @@ import React, { useState } from 'react';
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom"; // We imported the Link component from React Router
+import { config, endpoints, headers, frontendMessages } from '../../config/index';
+
 
 function SignUp() {
-  const [role, setRole] = useState('student'); // default role
+  const [role, setRole] = useState(config.ROLES.STUDENT); // default role
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/users", {
+      const res = await fetch(`${config.API_BASE_URL}${endpoints.USER.REGISTER}`,
+         {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": headers.JSON['Content-Type'],
         },
         body: JSON.stringify({
           firstName,
@@ -22,24 +25,25 @@ function SignUp() {
           email,
           password,
           role,
-        }),
-      });
+        })
+      }
+    );
 
       const data = await res.json();
 
       if (res.ok) {
         // If registration is successful, redirect according to role
-        if (role === 'student') {
-          navigate('/student-login');
+        if (role === config.ROLES.STUDENT) {
+          navigate(endpoints.STUDENT_LOGIN);
         } else {
-          navigate('/teacher-login');
+          navigate(endpoints.TEACHER_LOGIN);
         }
       } else {
-        alert(data.message || 'Registration failed');
+        alert(data.message || frontendMessages.error.registration);
       }
     } catch (err) {
       console.error('Registration error:', err);
-      alert('An error occurred');
+      alert(frontendMessages.error.error);
     }
   };
 

@@ -9,6 +9,8 @@ import TeacherDashboard from "./pages/Teacher/TeacherDashboard";
 import Profile from "./components/Profile/Profile";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import endpoints from "./config/Endpoints";
+import CreateClass from "./components/Classes/CreateClass";
 
 function App() {
   return (
@@ -17,10 +19,12 @@ function App() {
        <ToastContainer />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/student-dashboard" element = {<StudentDashboard/>} />
-        <Route path="/teacher-dashboard" element = {<TeacherDashboard/>} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path= {`${endpoints.SIGN_UP}`} element={<SignUp />} />
+        <Route path={`${endpoints.STUDENT_DASHBOARD}`} element = {<StudentDashboard/>} />
+        <Route path={`${endpoints.TEACHER_DASHBOARD}`} element = {<TeacherDashboard/>} />
+        <Route path={`${endpoints.PROFILE}`} element={<Profile />} />
+        <Route path= {`${endpoints.CLASS.CREATE}`} element ={<CreateClass />}/>
+
 
      
       </Routes>

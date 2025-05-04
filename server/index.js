@@ -1,27 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const db = require("./config/db");
-
-// Veritabanında user tablosu oluştur (eğer yoksa)
-const createUserTable = `
-CREATE TABLE IF NOT EXISTS user (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  firstName VARCHAR(255) NOT NULL,
-  lastName VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  role VARCHAR(50) NOT NULL
-)
-`;
-
-db.query(createUserTable, (err, result) => {
-  if (err) {
-    console.error("Could not create User table:", err);
-  } else {
-    console.log("User table is ready! ✅");
-  }
-});
 
 const app = express();
 
@@ -45,6 +24,17 @@ app.use("/api", authRoutes);
 
 const profileRoutes = require("./routes/profile");
 app.use("/api", profileRoutes);
+
+// Tablo oluşturucular
+ const createUserTable = require("./models/userModel");
+ const createClassTable = require("./models/classModel");
+ app.use("/api/users", require("./routes/users"));
+ app.use("/api/classes", require("./routes/classes"));
+
+// Tabloları oluştur
+ createUserTable();
+ createClassTable();
+
 
 // Server
 const PORT = process.env.PORT;

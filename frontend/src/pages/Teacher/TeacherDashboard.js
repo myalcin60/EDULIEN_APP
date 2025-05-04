@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Profile from "../../components/Profile/Profile";
-import Lesson from '../../components/Lesson/Lesson';
+import CreateClass from "../../components/Classes/CreateClass";
 import Homework from '../../components/Homework/Homework';
 
 const TeacherDashboard = () => {
@@ -20,10 +20,10 @@ const TeacherDashboard = () => {
                         </li>
                         <li
                             className="list-group-item list-group-item-action"
-                            onClick={() => setSelectedComponent("Lesson")}
+                            onClick={() => setSelectedComponent("CreateClass")}
 
                         >
-                            LESSON
+                            CreateClass
                         </li>
                         <li
                             className="list-group-item list-group-item-action"
@@ -41,7 +41,7 @@ const TeacherDashboard = () => {
                 {/* right-menu */}
                 <div className="col-9 right-menu">
                     {selectedComponent === "Profile" && <Profile />}
-                    {selectedComponent === "Lesson" && <Lesson />}
+                    {selectedComponent === "CreateClass" && <CreateClass />}
                     {selectedComponent === "Homework" && <Homework />}
                 </div>
             </div>

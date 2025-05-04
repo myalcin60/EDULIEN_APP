@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/db");
+const { db,endpoints, messages, } = require("../config/index");
 
 // Kullanıcının profil bilgilerini getir
-router.get("/profile/:email", (req, res) => {
+router.get(endpoints.PROFILE.PROFILE, (req, res) => {
   const { email } = req.params;
 
   db.query("SELECT id, firstName, lastName, email, role FROM user WHERE email = ?", [email], (err, results) => {
     if (err) {
-      return res.status(500).json({ error: "Database error", details: err });
+      return res.status(500).json({ error: messages.profile.error.dbError, details: err });
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: messages.profile.error.userNotFound });
     }
 
     res.json(results[0]);

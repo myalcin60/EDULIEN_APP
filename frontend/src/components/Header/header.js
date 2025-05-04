@@ -1,6 +1,7 @@
 import React from "react";
 import './Header.css';
 import {Link} from "react-router-dom";
+import endpoints from "../../config/Endpoints";
 
 function Header(){
     return(
@@ -15,8 +16,8 @@ function Header(){
         </div>
         <nav>
             <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
+            <a href={`${endpoints.ABOUT}`}>About</a>
+            <a href={`${endpoints.CONTACT}`}>Contact</a>
         </nav>
     </header>
     );
