@@ -2,28 +2,31 @@ const BASE = "/api";
 
 const endpoints = {
   USERS: {
+    USERS: `${BASE}/users`,
     REGISTER: "/",
   },
   AUTH: {
-    LOGIN: "/login",
+    LOGIN: '/login',
   },
   PROFILE: {
-    PROFILE : "/profile/:email",
+    PROFILE: `/profile/:email`,
   },
   STUDENT: {
-    REGISTER: "/register",
+    STUDENT : `${BASE}/student`,
+    REGISTER: `${BASE}/register`,
   },
   TEACHER: {
-    REGISTER: "/register",
+    TEACHER :   `${BASE}/teacher`,
+    REGISTER: `${BASE}/register`,
     CLASS: {
-      CREATE: "/teachers/classes",
-      UPDATE: "/teachers/classes/:id",
-      DELETE: "/teachers/classes/:id",
-      LIST: "/teachers/classes",
-      LIST_ID : "/teachers/classes/:id",
+      CLASS : `${BASE}/teachers`,
+      CREATE: "/classes",
+      UPDATE: "/classes/:id",
+      DELETE: "/classes/:id",
+      LIST:   "/classes/:teacherId",
+      LIST_ID: "/classes/:id",
     }
   }
- 
 };
 
 module.exports = endpoints;

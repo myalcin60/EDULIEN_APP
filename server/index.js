@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+const {endpoints} =require("../server/config/index");
+
 const app = express();
 
 // Middleware
@@ -13,23 +15,17 @@ app.get("/api", (req, res) => {
   res.json({ message: "Edulien App API" });
 });
 
-const studentRoutes = require("./routes/student");
-app.use("/api/student", studentRoutes);
-
-const teacherRoutes = require("./routes/teacher");
-app.use("/api/teacher", teacherRoutes);
-
-const authRoutes = require("./routes/auth");
-app.use("/api", authRoutes);
-
-const profileRoutes = require("./routes/profile");
-app.use("/api", profileRoutes);
+app.use("/api", require("./routes/login"));
+app.use(endpoints.STUDENT.STUDENT, require("./routes/student"));
+app.use(endpoints.TEACHER.TEACHER, require("./routes/teacher"));
+app.use("/api", require("./routes/profile"));
 
 // Tablo oluşturucular
  const createUserTable = require("./models/userModel");
  const createClassTable = require("./models/classModel");
- app.use("/api/users", require("./routes/users"));
- app.use("/api/classes", require("./routes/classes"));
+
+ app.use(endpoints.USERS.USERS, require("./routes/signUp"));
+ app.use(endpoints.TEACHER.CLASS.CLASS, require("./routes/classes"));
 
 // Tabloları oluştur
  createUserTable();
@@ -41,3 +37,6 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+

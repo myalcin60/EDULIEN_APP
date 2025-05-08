@@ -17,7 +17,7 @@ const endpoints = {
     DASHBOARD : "/dashboard",
 
     CLASS : {
-      CREATE : "/classes"
+      CREATE : "/teachers/classes"
     }
   };
   

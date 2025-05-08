@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import {toast} from "react-toastify";
-import"react-toastify/ReactToastify.css";
+import"react-toastify/dist/ReactToastify.css";
 import { config, endpoints, headers, frontendMessages } from '../../config/index';
 
 
@@ -31,7 +31,7 @@ function Login() {
           role: selectedRole
         })
       });
-
+      
       const data = await response.json();
 
 

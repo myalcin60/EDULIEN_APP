@@ -31,6 +31,7 @@ const Profile = () => {
       <p><strong>Sur Name:</strong> {userData.lastName}</p>
       <p><strong>Email:</strong> {userData.email}</p>
       <p><strong>Role:</strong> {userData.role}</p>
+      <p><strong>Teacher Id:</strong> {userData.id}</p>
     </div>
   );
 };

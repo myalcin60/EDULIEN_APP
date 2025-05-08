@@ -23,7 +23,7 @@ const TeacherDashboard = () => {
                             onClick={() => setSelectedComponent("CreateClass")}
 
                         >
-                            CreateClass
+                            CLASSES
                         </li>
                         <li
                             className="list-group-item list-group-item-action"
