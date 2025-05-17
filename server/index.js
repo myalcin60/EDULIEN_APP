@@ -25,7 +25,7 @@ app.use("/api", require("./routes/profile"));
  const createClassTable = require("./models/classModel");
 
  app.use(endpoints.USERS.USERS, require("./routes/signUp"));
- app.use(endpoints.TEACHER.CLASS.CLASS, require("./routes/classes"));
+ app.use('/api', require("./routes/classes"));
 
 // Tabloları oluştur
  createUserTable();

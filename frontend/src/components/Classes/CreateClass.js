@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { config, endpoints, headers, frontendMessages } from '../../config/index';
+import DeleteClass from './DeleteClass';
 
 function CreateClass() {
   const [className, setClassName] = useState('');
@@ -10,15 +11,6 @@ function CreateClass() {
 
   const [classList, setClassList] = useState([]);
 
-  const getClasses = async () => {
-    try {
-      const res = await fetch(`${config.API_BASE_URL}${endpoints.CLASS.GET_ALL}`);
-      const data = await res.json();
-      setClassList(data);
-    } catch (err) {
-      console.error("Class list fetch failed", err);
-    }
-  };
 
 
   useEffect(() => {
@@ -33,12 +25,26 @@ function CreateClass() {
         console.error(frontendMessages.error.profileFetch, error);
       });
   }, [email]);
+  const getClasses = async () => {
+    if (!userData?.id) return;
+    try {
+      const url = `${config.API_BASE_URL}${endpoints.CLASS.GET_ALL}${userData.id}`;
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Class list fetch failed");
+      }
+      const classData = await res.json();
+      setClassList(classData);
+    } catch (err) {
+      console.error("Class list fetch failed", err);
+    }
+  };
 
   useEffect(() => {
     if (userData?.id) {
       getClasses();
     }
-  }, [userData]) ;
+  }, [userData]);
 
 
   if (!userData) {
@@ -68,6 +74,7 @@ function CreateClass() {
       if (response.ok) {
         alert(frontendMessages.success.createClass);
         setClassName('');
+        getClasses();
 
       } else {
         alert(data.message || frontendMessages.error.creation);
@@ -77,6 +84,8 @@ function CreateClass() {
       alert(frontendMessages.error.error);
     }
   };
+
+
 
   return (
     <div className="create-class-container">
@@ -104,18 +113,24 @@ function CreateClass() {
 
         <button type="submit">Create</button>
       </form>
-
-      <h3>Your Classes</h3>
-      <ul>
-        {classList
-          .filter(cls => cls.teacherId === userData.id)
-          .map((cls) => (
-            <li key={cls.classId}>
-              {cls.className} (ID: {cls.classId})
-            </li>
-          ))}
-      </ul>
-
+      <div>
+        <h3> Classes</h3>
+        <ul>
+          {classList.map((cls) => (
+              <li key={cls.classId}>
+                {cls.className}
+                {cls.teacherId === userData.id && (
+          <DeleteClass
+            classId={cls.classId}
+            teacherId={cls.teacherId}
+            currentUserId={userData.id}
+            onDelete={getClasses}
+          />
+        )}
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 }

@@ -20,10 +20,10 @@ const endpoints = {
     REGISTER: `${BASE}/register`,
     CLASS: {
       CLASS : `${BASE}/teachers`,
-      CREATE: "/classes",
-      UPDATE: "/classes/:id",
-      DELETE: "/classes/:id",
-      LIST:   "/classes/:teacherId",
+      CREATE: "/teachers/classes",
+      UPDATE: "/teachers/classes/:id",
+      DELETE: "/teachers/classes/:id",
+      LIST:   "/classes/teachers/:id",
       LIST_ID: "/classes/:id",
     }
   }

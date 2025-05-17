@@ -17,7 +17,10 @@ const endpoints = {
     DASHBOARD : "/dashboard",
 
     CLASS : {
-      CREATE : "/teachers/classes"
+      CREATE : "/teachers/classes",
+      GET_ALL: "/classes/teachers/",
+      DELETE : "/teachers/classes/:id",
+
     }
   };
   

@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import endpoints from "./config/Endpoints";
 import CreateClass from "./components/Classes/CreateClass";
+import DeleteClass from "./components/Classes/DeleteClass";
 
 function App() {
   return (
@@ -24,8 +25,6 @@ function App() {
         <Route path={`${endpoints.TEACHER_DASHBOARD}`} element = {<TeacherDashboard/>} />
         <Route path={`${endpoints.PROFILE}`} element={<Profile />} />
         <Route path= {`${endpoints.CLASS.CREATE}`} element ={<CreateClass />}/>
-
-
      
       </Routes>
       <Footer />
