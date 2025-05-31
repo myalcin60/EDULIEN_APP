@@ -15,17 +15,20 @@ app.get("/api", (req, res) => {
   res.json({ message: "Edulien App API" });
 });
 
-app.use("/api", require("./routes/login"));
-app.use(endpoints.STUDENT.STUDENT, require("./routes/student"));
-app.use(endpoints.TEACHER.TEACHER, require("./routes/teacher"));
-app.use("/api", require("./routes/profile"));
+const authRoutes = require("./routes/authRoutes");
+app.use("/api", authRoutes);
+app.use("/api/auth", authRoutes);
+
+const profileRoutes = require("./routes/profieRoutes");
+app.use("/api", profileRoutes);
+
+
 
 // Tablo oluşturucular
  const createUserTable = require("./models/userModel");
  const createClassTable = require("./models/classModel");
-
- app.use(endpoints.USERS.USERS, require("./routes/signUp"));
- app.use('/api', require("./routes/classes"));
+ 
+ app.use('/api', require("./routes/classRoutes"));
 
 // Tabloları oluştur
  createUserTable();

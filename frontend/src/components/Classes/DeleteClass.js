@@ -1,15 +1,17 @@
 import React from 'react';
 import { config, endpoints, frontendMessages } from '../../config/index';
+import { showToast, handleError, confirmDialog} from '../../utils/helpers';
+
 
 function DeleteClass({ classId, teacherId, currentUserId, onDelete }) {
   const handleDelete = async () => {
     if (teacherId !== currentUserId) {
-      alert("Bu sınıfı silme yetkiniz yok.");
+      showToast(frontendMessages.confirm.delete_permission, 'error');
       return;
     }
 
-    const confirmDelete = window.confirm("Sınıfı silmek istediğinize emin misiniz?");
-    if (!confirmDelete) return;
+    const confirmed = confirmDialog(frontendMessages.confirm.delete_confirmation);
+    if (!confirmed) return;
 
     try {
       const response = await fetch(
@@ -22,14 +24,13 @@ function DeleteClass({ classId, teacherId, currentUserId, onDelete }) {
       const data = await response.json();
 
       if (response.ok) {
-        alert(frontendMessages.success.deleteClass);
+        showToast(frontendMessages.success.deleteClass, 'success');
         onDelete(); // sınıf listesini güncelle
       } else {
-        alert(data.message || frontendMessages.error.deletion);
+        showToast(data.message || frontendMessages.error.deletion, 'error');
       }
     } catch (err) {
-      console.error('Sınıf silinirken hata oluştu:', err);
-      alert(frontendMessages.error.error);
+      handleError(err, frontendMessages.error.delete_class);
     }
   };
 

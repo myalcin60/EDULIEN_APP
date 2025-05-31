@@ -6,18 +6,21 @@ const endpoints = {
     REGISTER: "/",
   },
   AUTH: {
+    REGISTER: "/register",
     LOGIN: '/login',
+    LOGOUT : "",
+    RESET_PASSWORD: "",
+    REFRESH_TOKEN: "",
+    VERIFY_EMAIL: "",
   },
   PROFILE: {
     PROFILE: `/profile/:email`,
   },
   STUDENT: {
-    STUDENT : `${BASE}/student`,
-    REGISTER: `${BASE}/register`,
+    
   },
   TEACHER: {
-    TEACHER :   `${BASE}/teacher`,
-    REGISTER: `${BASE}/register`,
+    
     CLASS: {
       CLASS : `${BASE}/teachers`,
       CREATE: "/teachers/classes",

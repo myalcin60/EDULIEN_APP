@@ -5,6 +5,8 @@ const messages = {
       noSuchUser: "There is no such user!",
       wrongPassword: "Password is wrong!",
       invalidRoleOrInfo: "Incomplete information or incorrect role",
+      deleteAuth : "You do not have permission to delete this class.",
+      teacherID :"Teacher ID required.",
     },
     success: {
       login: "Login successful!",
@@ -28,6 +30,7 @@ const messages = {
       dbError: "Database error",
       missingInfo: "Required information is missing.",
       required: "All fields are required",
+      classDeleted: "Class delete error:",
     },
     success: {
       classCreated: "Class created successfully.",

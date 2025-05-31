@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import {toast} from "react-toastify";
 import"react-toastify/dist/ReactToastify.css";
 import { config, endpoints, headers, frontendMessages } from '../../config/index';
+import home_page from '../../assets/home_page.png';
+import student from '../../assets/OGRENCI.jpg';
+import teacher from '../../assets/ogretmen.jpg';
 
 
 function Login() {
@@ -38,7 +41,10 @@ function Login() {
       if (response.ok) {
         navigate(endpoints.DASHBOARD); 
         toast.success(frontendMessages.success.login, {autoClose : 2000});
+
         localStorage.setItem("userEmail", email);  //Save user email to localStorage
+        //  Tetikleyici: Header güncellesin
+        window.dispatchEvent(new Event("storage"));
 
         if (data.userType === config.ROLES.STUDENT) {
 
@@ -79,7 +85,7 @@ function Login() {
           </div>
           {/* Login Form */}
           <img
-            src={selectedRole === config.ROLES.STUDENT ? '/assets/OGRENCI.jpg' : '/assets/ogretmen.jpg'
+            src={selectedRole === config.ROLES.STUDENT ? student : teacher
             }
             alt={selectedRole} className="role-image" />
 
@@ -108,7 +114,7 @@ function Login() {
           </form>
         </div>
         <div className='col-7 image-homePage'>
-          <img src="/assets/home_page.png"/>
+          <img src={home_page} alt='home_page'/>
         </div>
         
       </div>

@@ -1,25 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './Header.css';
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import endpoints from "../../config/Endpoints";
+import logo from '../../assets/logo.jpg';
+import account from '../../assets/account.png';
 
-function Header(){
-    return(
-<header>
-        <div className="logo">
-            <a href="/">
-            <img src="/assets/logo.jpg" alt="Logo"></img>
+function Header() {
+  const [userEmail, setUserEmail] = useState(null);
+  const navigate = useNavigate();
 
-            <h1>EDULIEN</h1>
-            </a>
-        
-        </div>
-        <nav>
-            <a href="/">Home</a>
-            <a href={`${endpoints.ABOUT}`}>About</a>
-            <a href={`${endpoints.CONTACT}`}>Contact</a>
-        </nav>
+  // Dinamik olarak localStorage değişimini dinle
+  useEffect(() => {
+    const checkEmail = () => {
+      const email = localStorage.getItem('userEmail');
+      setUserEmail(email);
+    };
+
+    checkEmail(); // İlk yüklemede kontrol et
+    window.addEventListener('storage', checkEmail); // Tetikleyici
+
+    return () => {
+      window.removeEventListener('storage', checkEmail);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('userEmail');
+    setUserEmail(null);
+    navigate('/'); // anasayfaya yönlendir
+  };
+
+  return (
+    <header>
+      <div className="logo">
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+          <h1>EDULIEN</h1>
+        </Link>
+      </div>
+
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to={endpoints.ABOUT}>About</Link>
+        <Link to={endpoints.CONTACT}>Contact</Link>
+      </nav>
+
+      <div className="right">
+        {userEmail ? (
+          <div className="account-info">
+            <img className="account-img" src={account} alt="Account" />
+            <p>{userEmail}</p>
+            <button onClick={handleLogout} className="logout-button">Logout</button>
+          </div>
+        ) : (
+          <Link to="/">
+            <img className="account-img" src={account} alt="Account" />
+            <p>Se connect</p>
+          </Link>
+        )}
+      </div>
     </header>
-    );
+  );
 }
+
 export default Header;

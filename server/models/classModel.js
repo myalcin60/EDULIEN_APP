@@ -5,7 +5,7 @@ const createClassTable = () => {
     CREATE TABLE IF NOT EXISTS class (
       classId INT AUTO_INCREMENT PRIMARY KEY,
       className VARCHAR(100) NOT NULL,
-      teacherId INT NOT NULL,
+      teacherId VARCHAR(20) NOT NULL,
       teacherName VARCHAR (100),
       createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (teacherId) REFERENCES user(id) ON DELETE CASCADE
@@ -13,9 +13,9 @@ const createClassTable = () => {
   `;
   db.query(sql, (err) => {
     if (err) {
-      console.error("❌ Error creating class table:", err);
+      console.error(" Error creating class table:", err);
     } else {
-      console.log("✅ Class table checked/created.");
+      console.log(" Class table checked/created.");
     }
   });
 };

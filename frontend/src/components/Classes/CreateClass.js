@@ -1,60 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { config, endpoints, headers, frontendMessages } from '../../config/index';
+import { config, endpoints, headers, frontendMessages } from '../../config';
 import DeleteClass from './DeleteClass';
+import UpdateClass from './UpdateClass';
+import { Link } from 'react-router-dom';
+import { showToast, handleError } from '../../utils/helpers';
 
 function CreateClass() {
   const [className, setClassName] = useState('');
-  const [teacherName, setTeacherName] = useState('');
-  const [teacherId, setTeacherId] = useState('');
   const [userData, setUserData] = useState(null);
-  const email = localStorage.getItem("userEmail");
-
   const [classList, setClassList] = useState([]);
 
+  const email = localStorage.getItem("userEmail");
 
-
+  // Kullanıcı verisini çek
   useEffect(() => {
     if (!email) return;
 
     fetch(`${config.API_BASE_URL}${endpoints.PROFILE}/${email}`)
       .then((res) => res.json())
-      .then((data) => {
-        setUserData(data);
-      })
-      .catch((error) => {
-        console.error(frontendMessages.error.profileFetch, error);
-      });
+      .then((data) => setUserData(data))
+      .catch((err) => handleError(err, frontendMessages.error.profileFetch));
   }, [email]);
+
+  // Kullanıcının sınıflarını çek
   const getClasses = async () => {
     if (!userData?.id) return;
+
     try {
-      const url = `${config.API_BASE_URL}${endpoints.CLASS.GET_ALL}${userData.id}`;
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error("Class list fetch failed");
-      }
+      const res = await fetch(`${config.API_BASE_URL}${endpoints.CLASS.GET_ALL}${userData.id}`);
+      if (!res.ok) throw new Error("Class list fetch failed");
+
       const classData = await res.json();
       setClassList(classData);
     } catch (err) {
-      console.error("Class list fetch failed", err);
+      handleError(err, "Class list fetch failed");
     }
   };
 
   useEffect(() => {
-    if (userData?.id) {
-      getClasses();
-    }
+    if (userData?.id) getClasses();
   }, [userData]);
 
+  if (!userData) return <div>Loading...</div>;
 
-  if (!userData) {
-    return <div>Loading ...</div>;
-  };
-
-
+  // Sınıf oluşturma işlemi
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("UserData:", userData);
 
     try {
       const response = await fetch(`${config.API_BASE_URL}${endpoints.CLASS.CREATE}`, {
@@ -65,31 +56,27 @@ function CreateClass() {
         body: JSON.stringify({
           className,
           teacherName: userData.firstName,
-          teacherId: userData.id
+          teacherId: userData.id,
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        alert(frontendMessages.success.createClass);
+        showToast(frontendMessages.success.createClass, 'success');
         setClassName('');
         getClasses();
-
       } else {
-        alert(data.message || frontendMessages.error.creation);
+        showToast(data.message || frontendMessages.error.creation, 'error');
       }
     } catch (error) {
-      console.error('Error creating class:', error);
-      alert(frontendMessages.error.error);
+      handleError(error, frontendMessages.error.error);
     }
   };
 
-
-
   return (
     <div className="create-class-container">
-      <h2>CreateClass</h2>
+      <h2>Create Class</h2>
       <form onSubmit={handleSubmit}>
         <label>Class Name:</label>
         <input
@@ -99,36 +86,40 @@ function CreateClass() {
           required
         />
         <label>Teacher Name:</label>
-        <input
-          type="text"
-          value={userData.firstName}
-          readOnly
-        />
+        <input type="text" value={userData.firstName} readOnly />
         <label>Teacher ID:</label>
-        <input
-          type="number"
-          value={userData.id}
-          readOnly
-        />
+        <input type="text" value={userData.id} readOnly />
 
         <button type="submit">Create</button>
       </form>
+
       <div>
-        <h3> Classes</h3>
+        <h3>Classes</h3>
         <ul>
           {classList.map((cls) => (
-              <li key={cls.classId}>
+            <li key={cls.classId}>
+              <Link to={`/classes/${cls.classId}`} style={{ marginRight: '10px' }}>
                 {cls.className}
-                {cls.teacherId === userData.id && (
-          <DeleteClass
-            classId={cls.classId}
-            teacherId={cls.teacherId}
-            currentUserId={userData.id}
-            onDelete={getClasses}
-          />
-        )}
-              </li>
-            ))}
+              </Link>
+              {cls.teacherId === userData.id && (
+                <>
+                  <DeleteClass
+                    classId={cls.classId}
+                    teacherId={cls.teacherId}
+                    currentUserId={userData.id}
+                    onDelete={getClasses}
+                  />
+                  <UpdateClass
+                    classData={cls}
+                    currentUserId={userData.id}
+                    onUpdate={getClasses}
+                  />
+                </>
+
+
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </div>

@@ -3,7 +3,7 @@ import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom"; // We imported the Link component from React Router
 import { config, endpoints, headers, frontendMessages } from '../../config/index';
-
+import home_page from '../../assets/home_page.png';
 
 function SignUp() {
   const [role, setRole] = useState(config.ROLES.STUDENT); // default role
@@ -85,7 +85,7 @@ function SignUp() {
           </p>
         </div>
         <div className='col-7 image-homePage'>
-          <img src="/assets/home_page.png"/>
+          <img src={home_page}/>
         </div>
       </div>
 
