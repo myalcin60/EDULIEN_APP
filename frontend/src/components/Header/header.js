@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import endpoints from "../../config/Endpoints";
 import logo from '../../assets/logo.jpg';
 import account from '../../assets/account.png';
+import Profile from "../Profile/Profile";
 
-function Header() {
+function Header( setSelectedComponent) {
   const [userEmail, setUserEmail] = useState(null);
   const navigate = useNavigate();
 
@@ -30,6 +31,10 @@ function Header() {
     navigate('/'); // anasayfaya yönlendir
   };
 
+  const handleProfile = () =>{
+    setSelectedComponent('Profile');
+  };
+
   return (
     <header>
       <div className="logo">
@@ -49,7 +54,7 @@ function Header() {
         {userEmail ? (
           <div className="account-info">
             <img className="account-img" src={account} alt="Account" />
-            <p>{userEmail}</p>
+            <button onClick={handleProfile} >{userEmail}</button>
             <button onClick={handleLogout} className="logout-button">Logout</button>
           </div>
         ) : (

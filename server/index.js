@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+
 const {endpoints} =require("../server/config/index");
 
 const app = express();
@@ -22,18 +23,25 @@ app.use("/api/auth", authRoutes);
 const profileRoutes = require("./routes/profieRoutes");
 app.use("/api", profileRoutes);
 
+const classStudentRoutes = require("./routes/classStudentRoutes");
+app.use("/api", classStudentRoutes);
 
+
+ 
 
 // Tablo oluşturucular
  const createUserTable = require("./models/userModel");
  const createClassTable = require("./models/classModel");
- 
+ const createClassStudentsTable = require("./models/classStudentModel");
+ const createNotificationsTable =require("./models/notificationModel");
+
  app.use('/api', require("./routes/classRoutes"));
 
 // Tabloları oluştur
  createUserTable();
  createClassTable();
-
+ createClassStudentsTable();
+ createNotificationsTable();
 
 // Server
 const PORT = process.env.PORT;
