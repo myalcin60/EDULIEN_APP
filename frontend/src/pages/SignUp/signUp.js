@@ -54,9 +54,9 @@ function SignUp() {
 
 
   return (
-    <div className="container-fluid signUp-page" >
-      <div className='row'>
-        <div className=" col-3 signup-container">
+    <div className="container-fluid signUp-page flex" >
+      <div className='flex'>
+        <div className="signup-container">
 
           <h2>Sign Up</h2>
           <form onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ function SignUp() {
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
             <label>Select Role:</label>
-            <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <select className='selet-role' value={role} onChange={(e) => setRole(e.target.value)}>
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
             </select>
@@ -84,7 +84,7 @@ function SignUp() {
             Already have an account? <Link to="/">Log in</Link>
           </p>
         </div>
-        <div className='col-7 image-homePage'>
+        <div className='image-homePage'>
           <img src={home_page}/>
         </div>
       </div>

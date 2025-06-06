@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Profile from '../../components/Profile/Profile';
-import './StudentDashboard.css';
+import './studentDashboard.css';
 import Lesson from '../../components/Lesson/Lesson';
 import Homework from '../../components/Homework/Homework';
 

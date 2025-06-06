@@ -8,7 +8,9 @@ import Profile from "../Profile/Profile";
 
 function Header( setSelectedComponent) {
   const [userEmail, setUserEmail] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+
 
   // Dinamik olarak localStorage değişimini dinle
   useEffect(() => {
@@ -31,12 +33,16 @@ function Header( setSelectedComponent) {
     navigate('/'); // anasayfaya yönlendir
   };
 
+
   const handleProfile = () =>{
     setSelectedComponent('Profile');
   };
+  const toggleMenu = () => {
+     setIsOpen(!isOpen);
+  };
 
   return (
-    <header>
+    <header className="flex ">
       <div className="logo">
         <Link to="/">
           <img src={logo} alt="Logo" />
@@ -44,13 +50,11 @@ function Header( setSelectedComponent) {
         </Link>
       </div>
 
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to={endpoints.ABOUT}>About</Link>
-        <Link to={endpoints.CONTACT}>Contact</Link>
-      </nav>
-
-      <div className="right">
+      <nav className={`main-nav ${isOpen ? "open" : ""}`}>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <div className="right">
         {userEmail ? (
           <div className="account-info">
             <img className="account-img" src={account} alt="Account" />
@@ -64,6 +68,12 @@ function Header( setSelectedComponent) {
           </Link>
         )}
       </div>
+          </nav>
+           <button className="hamburger" onClick={toggleMenu}>
+            ☰
+          </button>
+
+      
     </header>
   );
 }

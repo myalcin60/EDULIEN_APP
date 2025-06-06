@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
-import {toast} from "react-toastify";
-import"react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { config, endpoints, headers, frontendMessages } from '../../config/index';
 import home_page from '../../assets/home_page.png';
 import student from '../../assets/OGRENCI.jpg';
@@ -26,7 +26,7 @@ function Login() {
       const response = await fetch(`${config.API_BASE_URL}${endpoints.LOGIN}`, {
         method: "POST",
         headers: {
-          "Content-Type":headers.JSON['Content-Type']
+          "Content-Type": headers.JSON['Content-Type']
         },
         body: JSON.stringify({
           email,
@@ -34,13 +34,13 @@ function Login() {
           role: selectedRole
         })
       });
-      
+
       const data = await response.json();
 
 
       if (response.ok) {
-        navigate(endpoints.DASHBOARD); 
-        toast.success(frontendMessages.success.login, {autoClose : 2000});
+        navigate(endpoints.DASHBOARD);
+        toast.success(frontendMessages.success.login, { autoClose: 2000 });
 
         localStorage.setItem("userEmail", email);  //Save user email to localStorage
         //  Tetikleyici: Header güncellesin
@@ -64,14 +64,14 @@ function Login() {
 
 
   return (
-    <div className="container-fluid login-page">
-      <div className='row'>
-
-        <div className=" col-3 login-container">
+    <div class="container login-page flex">
+      
+      <div class="flex">
+        <div class="login-container">
           {/* Role selection */}
           <div className="role-toggle">
             <button
-              className={selectedRole === config.ROLES.STUDENT? 'active' : ''}
+              className={selectedRole === config.ROLES.STUDENT ? 'active' : ''}
               onClick={() => handleRoleClick(config.ROLES.STUDENT)}
             >
               Student
@@ -89,7 +89,7 @@ function Login() {
             }
             alt={selectedRole} className="role-image" />
 
-          <form onSubmit={handleLogin}>
+           <form onSubmit={handleLogin}>
 
             <label>Email:</label>
             <input
@@ -113,14 +113,16 @@ function Login() {
             </p>
           </form>
         </div>
-        <div className='col-7 image-homePage'>
-          <img src={home_page} alt='home_page'/>
+        <div class='image-homePage'>
+          <img src={home_page} alt='home_page' />
         </div>
-        
       </div>
-      
+
+
+
+
     </div>
-    
+
   );
 }
 

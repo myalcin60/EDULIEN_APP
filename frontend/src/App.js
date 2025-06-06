@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login/Login";
-import SignUp from "./pages/SignUp/SignUp";
-import Header from "./components/Header/Header";
+import Login from "./pages/Login/login";
+import SignUp from "./pages/SignUp/signUp";
+import Header from "./components/Header/header";
 import Footer from "./components/Footer/Footer";
-import StudentDashboard from "./pages/Student/StudentDashboard";
+import StudentDashboard from "./pages/Student/studentDashboard";
 import TeacherDashboard from "./pages/Teacher/TeacherDashboard";
 import Profile from "./components/Profile/Profile";
 import 'react-toastify/dist/ReactToastify.css';

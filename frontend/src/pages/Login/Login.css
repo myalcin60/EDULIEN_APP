@@ -1,46 +1,86 @@
-.login-page {
-  padding: 50px 20px;
+@media (max-width: 768px) {
+  .image-homePage {
+    display: none;
+  }
+
+  .login-container {
+    padding: 10px;
+  }
+
+  labbel {
+    margin: 5px;
+    font-size: 10px;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
 }
 
 .login-container {
-  max-width: 400px;
-  margin: 80px auto;
+  margin-top: 10%;
+  width: 200px;
+  height: auto;
   padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-.login-container label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-}
+  .role-toggle {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
 
-.login-container form button {
+    button {
+      flex: 1;
+      margin: 0 5px;
+      background-color: var(--gray);
+      color: var(--dark);
+    }
+
+    button.active {
+      background-color: var(--primary);
+      color: white;
+    }
+  }
+
+  .role-image {
+    display: block;
+    width: 40%;
+    margin: 20px auto;
+  }
+}
+p{
+  font-size: x-small;
+}
+button {
   width: 100%;
   margin-top: 10px;
-}
-.role-toggle {
-  display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 20px;
+ font-size: x-small;
 }
 
-.role-toggle button {
-  flex: 1;
-  margin: 0 5px;
-  background-color: var(--gray);
-  color: var(--dark);
-}
-
-.role-toggle button.active {
-  background-color: var(--primary);
-  color: white;
-}
-.role-image {
+label {
   display: block;
-  width: 40%;
-  margin: 20px auto;
+  margin: 5px 0 5px;
+  font-weight: bold;
+  font-size: x-small;
+}
+
+
+
+.image-homePage {
+  width: 400px;
+  position: relative;
+  overflow: hidden;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  >img {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+  }
 }

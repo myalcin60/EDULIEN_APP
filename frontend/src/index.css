@@ -27,7 +27,7 @@ body {
   /* Inputs */
   input {
     width: 100%;
-    padding: 8px;
+    padding: 5px;
     border: 1px solid #aaa;
     border-radius: 4px;
     box-sizing: border-box;
@@ -42,6 +42,7 @@ body {
     background-color: var(--accent);
     color: white;
     transition: 0.3s;
+    font-size: x-small;
   }
   
   button:hover {
@@ -52,6 +53,7 @@ body {
   a {
     text-decoration: none;
     color: inherit;
+    font-size: x-small;
   }
   
   a:hover {
