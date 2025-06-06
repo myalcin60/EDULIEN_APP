@@ -27,8 +27,8 @@ function App() {
         <Route path={`${endpoints.TEACHER_DASHBOARD}`} element={<TeacherDashboard />} />
         <Route path={`${endpoints.PROFILE}`} element={<Profile />} />
         <Route path={`${endpoints.CLASS.CREATE}`} element={<CreateClass />} />
-        <Route path="/classes/:classId" element={<ClassPage />} />
-
+        <Route path={`${endpoints.CLASS.CLASS}`} element={<ClassPage />} />
+        <Route path={`${endpoints.CLASS.INVITE}`} element={<ClassPage />} />
         </Routes>
       <Footer />
     </Router>

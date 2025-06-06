@@ -6,10 +6,16 @@ import Homework from '../../components/Homework/Homework';
 const TeacherDashboard = () => {
     const [selectedComponent, setSelectedComponent] = useState("Profile");
     return (
-        
+
         <div className="container-fluid">
             <div className="row g-1">
-            <h2>Teacher Dashbord</h2>
+                <h2>
+                    <li className="list-group-item list-group-item-action"
+                            onClick={() => setSelectedComponent("Profile")}
+                        >
+                            TEACHER DASHBORD
+                        </li>
+                </h2>
                 {/* left-menu*/}
                 <div className=" col-2 left-menu" style={{ minHeight: '100vh' }}>
                     <ul className="list-group">

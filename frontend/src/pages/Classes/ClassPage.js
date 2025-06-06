@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { config, endpoints, frontendMessages } from '../../config';
 
 function ClassPage() {
@@ -10,17 +12,28 @@ function ClassPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${config.API_BASE_URL}${endpoints.CLASS.GET_BY_ID.replace(':id', classId)}`)
-      .then(res => res.json())
-      .then(data => {
+    fetch(`${config.API_BASE_URL}${endpoints.CLASS.GET_BY_ID.replace(":id", classId)}`)
+      .then((res) => res.json())
+      .then((data) => {
         setClassInfo(data);
-         setStudents(data.students || []); // backend'de öğrenciler varsa burası aktif edilir
       })
-      .catch(err => {
-        console.error('Sınıf bilgisi alınamadı:', err);
+      .catch((err) => {
+        console.error("Sınıf bilgisi alınamadı:", err);
         setError(frontendMessages.error.classFetch);
       });
+
+    // Sonra sınıfa eklenen öğrencileri al
+    fetch(`${config.API_BASE_URL}/by-class/${classId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setStudents(data);
+      })
+      .catch((err) => {
+        console.error("Öğrenciler alınamadı:", err);
+      });
   }, [classId]);
+
+
 
   const handleInvite = async (e) => {
     e.preventDefault();
@@ -40,15 +53,19 @@ function ClassPage() {
       const data = await response.json();
 
       if (response.ok) {
-        alert(frontendMessages.success.inviteSent);
-        setStudentEmail('');
-        // setStudents(prev => [...prev, data.newStudent]); // opsiyonel
+        toast.success(data.message || frontendMessages.success.inviteSent);
+        setStudentEmail("");
+
+        // Öğrencileri tekrar getir
+        const updatedRes = await fetch(`${config.API_BASE_URL}/by-class/${classId}`);
+        const updatedData = await updatedRes.json();
+        setStudents(updatedData);
       } else {
-        alert(data.message || frontendMessages.error.invite);
+        toast.error(data.message || frontendMessages.error.invite);
       }
     } catch (err) {
-      console.error('Öğrenci davet edilirken hata:', err);
-      alert(frontendMessages.error.error);
+      console.error("Öğrenci davet edilirken hata:", err);
+      toast.error(frontendMessages.error.error);
     }
   };
 
@@ -57,7 +74,7 @@ function ClassPage() {
 
   return (
     <div className="class-page-container">
-      
+
       <p><strong>Class Name :</strong> {classInfo.className}</p>
       <p><strong>Teacher:</strong> {classInfo.teacherName}</p>
 
@@ -73,16 +90,19 @@ function ClassPage() {
         <button type="submit">Davet Gönder</button>
       </form>
 
-      <div>
+      <div >
         <h3>Öğrenciler</h3>
         {students.length === 0 ? (
           <p>Henüz öğrenci yok.</p>
         ) : (
-          <ul>
+          <ol>
             {students.map((student, index) => (
-              <li key={index}>{student.email}</li>
+              <li key={index}>
+                {student.studentId} {"......"} {student.studentName} {'.........'}{student.studentEmail}
+                </li>
             ))}
-          </ul>
+          </ol>
+
         )}
       </div>
     </div>

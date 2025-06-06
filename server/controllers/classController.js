@@ -9,7 +9,6 @@ const createClass = async (req, res) => {
   if (!className || !teacherId) {
     return res.status(400).json({ message: messages.db.error.missingInfo });
   }
-
   try {
     const isDuplicate = await checkDuplicateClassName(className, teacherId);
     if (isDuplicate) {
@@ -47,6 +46,7 @@ const getClassById = (req, res) => {
     res.status(200).json(results);
   });
 };
+
 
 // Sınıfı güncelle
 const updateClass = (req, res) => {
