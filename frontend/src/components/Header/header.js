@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './Header.css';
 import { Link, useNavigate } from "react-router-dom";
-import endpoints from "../../config/Endpoints";
 import logo from '../../assets/logo.jpg';
 import account from '../../assets/account.png';
 import Profile from "../Profile/Profile";
