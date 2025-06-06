@@ -1,9 +1,10 @@
 .signup-container {
- max-width: 400px;
-  margin: 80px auto;
+  max-width: 400px;
+  margin: 10% auto;
   padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   background-color: #fff;
@@ -17,7 +18,8 @@
 .signup-container form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 5px;
+  font-size: small;
 }
 
 .signup-container input,
@@ -25,12 +27,26 @@
   border-radius: 5px;
 }
 
-.image-homePage{
-  margin: 80px auto;
-  border-radius: 10px;
+.image-homePage {
+  margin: 10% auto;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: relative;
+  overflow: hidden;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-.image-homePage img{
-  width: 100%;    
-  height: auto;   
+
+.image-homePage img {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.selet-role {
+  font-size: x-small;
+
+  >option {
+    font-size: x-small;
+  }
 }
