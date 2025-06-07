@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {config,endpoints, frontendMessages} from '../../config/index';
+import "./Profile.css";
 
 
 const Profile = () => {
@@ -25,7 +26,7 @@ const Profile = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="profile" >
       <h2>Profile</h2>
       <p><strong>Name:</strong> {userData.firstName}</p>
       <p><strong>Sur Name:</strong> {userData.lastName}</p>
