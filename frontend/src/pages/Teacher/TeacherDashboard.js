@@ -2,22 +2,19 @@ import React, { useState } from "react";
 import Profile from "../../components/Profile/Profile";
 import CreateClass from "../../components/Classes/CreateClass";
 import Homework from '../../components/Homework/Homework';
+import "./TeacherDashboard.css";
 
 const TeacherDashboard = () => {
     const [selectedComponent, setSelectedComponent] = useState("Profile");
     return (
 
-        <div className="container-fluid">
-            <div className="row g-1">
-                <h2>
-                    <li className="list-group-item list-group-item-action"
-                            onClick={() => setSelectedComponent("Profile")}
-                        >
-                            TEACHER DASHBORD
-                        </li>
-                </h2>
-                {/* left-menu*/}
-                <div className=" col-2 left-menu" style={{ minHeight: '100vh' }}>
+        <div className="container">
+    
+            <h2 onClick={() => setSelectedComponent("Profile")}>
+                TEACHER DASHBORD
+            </h2>
+            <div className="flex">
+                <div className="left-menu" >
                     <ul className="list-group">
                         <li className="list-group-item list-group-item-action"
                             onClick={() => setSelectedComponent("Profile")}
@@ -40,17 +37,17 @@ const TeacherDashboard = () => {
                         </li>
                     </ul>
                 </div>
-                <div className='col-1 space'>
-                    {/* for space */}
-                </div>
+               
 
                 {/* right-menu */}
-                <div className="col-9 right-menu">
+                <div className="right-menu">
                     {selectedComponent === "Profile" && <Profile />}
                     {selectedComponent === "CreateClass" && <CreateClass />}
                     {selectedComponent === "Homework" && <Homework />}
                 </div>
             </div>
+
+
         </div>
 
     );
