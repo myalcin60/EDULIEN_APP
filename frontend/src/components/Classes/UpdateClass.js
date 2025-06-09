@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { config, endpoints, headers, frontendMessages } from '../../config';
-import { showToast, handleError } from '../../utils/helpers';
+import { showToast, handleError } from '../../utils/Helpers';
 
 function UpdateClass({ classData, currentUserId, onUpdate }) {
   const [isEditing, setIsEditing] = useState(false);

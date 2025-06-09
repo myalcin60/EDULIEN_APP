@@ -17,6 +17,7 @@ const endpoints = {
     PROFILE: `/profile/:email`,
   },
   STUDENT: {
+    CLASS_LIST:   "/classes/students/:id",
     
   },
   TEACHER: {

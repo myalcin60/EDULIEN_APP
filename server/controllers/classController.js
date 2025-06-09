@@ -36,6 +36,8 @@ const getClassesByTeacher = (req, res) => {
   });
 };
 
+
+
 // Belirli bir sınıfı ID ile getir
 const getClassById = (req, res) => {
   const classId = req.params.id;
@@ -110,4 +112,5 @@ module.exports = {
   getClassById,
   updateClass,
   deleteClass,
+
 };

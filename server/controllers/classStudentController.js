@@ -1,5 +1,15 @@
 const { db, messages } = require("../config/index");
+// Ogrenciye ait siniflari getir
+const getClassByStudentId = (req, res) => {
+  const studentId = req.params.id
+  const sql = "SELECT className, teacherName FROM class_students, class where class.classId=class_students.classId and class_students.studentId=?; "
 
+  db.query(sql, [studentId], (err, results) => {
+    if (err) return handleDbError(res, err, "Sınıflar getirilirken hata");
+    res.status(200).json(results);
+  }
+  );
+};
 // OGRENCI LISTESINI GETIR
 const getStudentsByClassId = (req, res) => {
   const { classId } = req.params;
@@ -14,13 +24,13 @@ const getStudentsByClassId = (req, res) => {
       console.error("Öğrenciler alınırken hata:", err);
       return res.status(500).json({ message: "Öğrenciler alınamadı." });
     }
-   console.log(">> getStudentsByClassId sonuç:", results); // <<< Buradaki log’a bakın
-    res.json(results); });
+    console.log(">> getStudentsByClassId sonuç:", results); // <<< Buradaki log’a bakın
+    res.json(results);
+  });
 };
 const addStudentToClassByEmail = (req, res) => {
   const { classId, studentEmail } = req.body;
-  const teacherId = req.user?.id; // Auth middleware varsa
-
+  
   if (!classId || !studentEmail) {
     return res.status(400).json({ message: "classId ve studentEmail gereklidir." });
   }
@@ -59,7 +69,7 @@ const addStudentToClassByEmail = (req, res) => {
           if (err4) {
             return res.status(500).json({ message: "Öğrenci sınıfa eklenemedi.", details: err4 });
           }
-       
+
 
           // 5. Bildirim oluştur
           const notifMessage = `Öğretmen ${teacher.firstName} ${teacher.lastName} tarafından "${className}" sınıfına eklendiniz.`;
@@ -88,4 +98,5 @@ const addStudentToClassByEmail = (req, res) => {
 module.exports = {
   addStudentToClassByEmail,
   getStudentsByClassId,
+  getClassByStudentId,
 };

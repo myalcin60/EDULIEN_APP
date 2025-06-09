@@ -3,13 +3,18 @@ import { useParams } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { config, endpoints, frontendMessages } from '../../config';
+import './ClassPage.css'
+import { Dashboard } from '../../utils/Helpers';
 
-function ClassPage() {
+
+const ClassPage=()=> {
   const { classId } = useParams();
   const [classInfo, setClassInfo] = useState(null);
   const [studentEmail, setStudentEmail] = useState('');
   const [students, setStudents] = useState([]);
   const [error, setError] = useState(null);
+
+
 
   useEffect(() => {
     fetch(`${config.API_BASE_URL}${endpoints.CLASS.GET_BY_ID.replace(":id", classId)}`)
@@ -73,8 +78,8 @@ function ClassPage() {
   if (!classInfo) return <div>Yükleniyor...</div>;
 
   return (
-    <div className="class-page-container">
-
+    <div className="container">
+       <Dashboard />
       <p><strong>Class Name :</strong> {classInfo.className}</p>
       <p><strong>Teacher:</strong> {classInfo.teacherName}</p>
 
@@ -99,7 +104,7 @@ function ClassPage() {
             {students.map((student, index) => (
               <li key={index}>
                 {student.studentId} {"......"} {student.studentName} {'.........'}{student.studentEmail}
-                </li>
+              </li>
             ))}
           </ol>
 

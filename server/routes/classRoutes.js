@@ -18,4 +18,5 @@ router.put(endpoints.TEACHER.CLASS.UPDATE, classController.updateClass);
 // Delete
 router.delete(endpoints.TEACHER.CLASS.DELETE, classController.deleteClass);
 
+
 module.exports = router;

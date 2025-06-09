@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.jpg';
 import account from '../../assets/account.png';
 
-function Header({ setSelectedComponent }) {
+function Header( setSelectedComponent) {
   const [userEmail, setUserEmail] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
@@ -49,6 +49,8 @@ function Header({ setSelectedComponent }) {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleProfile = () => {
+   
+       
     setSelectedComponent('Profile');
   };
 
@@ -69,7 +71,7 @@ function Header({ setSelectedComponent }) {
           {userEmail ? (
             <div className="account-info flex">
               <img className="account-img" src={account} alt="Account" />
-              <button className="user" onClick={handleProfile}>{userEmail}</button>
+              <p className="user" >{userEmail}</p>
               <button onClick={handleLogout} className="logout-button">Logout</button>
             </div>
           ) : (

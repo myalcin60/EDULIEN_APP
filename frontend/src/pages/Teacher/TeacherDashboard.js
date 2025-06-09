@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Profile from "../../components/Profile/Profile";
 import CreateClass from "../../components/Classes/CreateClass";
 import Homework from '../../components/Homework/Homework';
@@ -6,12 +6,18 @@ import "./TeacherDashboard.css";
 
 const TeacherDashboard = () => {
     const [selectedComponent, setSelectedComponent] = useState("Profile");
+    const components = {
+        Profile: <Profile />,
+        CreateClass: <CreateClass />,
+        Homework: <Homework />,
+    };
+
     return (
 
         <div className="container">
-    
+
             <h2 onClick={() => setSelectedComponent("Profile")}>
-                TEACHER DASHBORD
+                DASHBOARD
             </h2>
             <div className="flex">
                 <div className="left-menu" >
@@ -37,17 +43,10 @@ const TeacherDashboard = () => {
                         </li>
                     </ul>
                 </div>
-               
-
-                {/* right-menu */}
                 <div className="right-menu">
-                    {selectedComponent === "Profile" && <Profile />}
-                    {selectedComponent === "CreateClass" && <CreateClass />}
-                    {selectedComponent === "Homework" && <Homework />}
+                    {components[selectedComponent]}
                 </div>
             </div>
-
-
         </div>
 
     );

@@ -18,15 +18,17 @@ const endpoints = {
   DASHBOARD: "/dashboard",
 
   CLASS: {
+    STUDENT_CLASS: "/classes/students/",
     CREATE: "/teachers/classes",
     GET_ALL: "/classes/teachers/",
     DELETE: "/teachers/classes/:id",
     CLASS: "/classes/:classId",
     GET_BY_ID: "/classes/:id",
     INVITE: "/classes/invite",
-    UPDATE : "/teachers/classes/:id",
+    UPDATE: "/teachers/classes/:id",
 
   }
+
 };
 
 export default endpoints;
