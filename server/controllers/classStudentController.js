@@ -30,7 +30,7 @@ const getStudentsByClassId = (req, res) => {
 };
 const addStudentToClassByEmail = (req, res) => {
   const { classId, studentEmail } = req.body;
-  
+
   if (!classId || !studentEmail) {
     return res.status(400).json({ message: "classId ve studentEmail gereklidir." });
   }
@@ -58,7 +58,9 @@ const addStudentToClassByEmail = (req, res) => {
       // 3. Öğretmen bilgisi al
       const teacherSql = "SELECT firstName, lastName FROM user WHERE id = ?";
       db.query(teacherSql, [teacherIdFromClass], (err3, teacherResults) => {
-        const teacher = teacherResults[0] || { firstName: "Bir", lastName: "Öğretmen" };
+        const teacher = teacherResults[0];
+        
+        const fullNameTeacher = `${teacher.firstName} ${teacher.lastName}`;
 
         // 4. Öğrenciyi class_students tablosuna ekle
         const insertSql = `

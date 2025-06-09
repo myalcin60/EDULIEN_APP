@@ -13,9 +13,9 @@ function CreateClass() {
 
   if (!userData) return <div>Loading...</div>;
 
-  // Sınıf oluşturma işlemi
+  // creat class
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();  // stop page refresh
 
     try {
       const response = await fetch(`${config.API_BASE_URL}${endpoints.CLASS.CREATE}`, {
@@ -25,7 +25,7 @@ function CreateClass() {
         },
         body: JSON.stringify({
           className,
-          teacherName: userData.firstName,
+          teacherName: userData.firstName + " "+ userData.lastName,
           teacherId: userData.id,
         }),
       });
@@ -56,7 +56,7 @@ function CreateClass() {
           required
         />
         <label>Teacher Name:</label>
-        <input type="text" value={userData.firstName} readOnly />
+        <input type="text" value={userData.firstName + " "+ userData.lastName} readOnly />
         <label>Teacher ID:</label>
         <input type="text" value={userData.id} readOnly />
 

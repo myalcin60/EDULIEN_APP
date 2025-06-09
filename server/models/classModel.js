@@ -7,6 +7,7 @@ const createClassTable = () => {
       className VARCHAR(100) NOT NULL,
       teacherId VARCHAR(20) NOT NULL,
       teacherName VARCHAR (100),
+      teacherLastName VARCHAR (100),
       createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (teacherId) REFERENCES user(id) ON DELETE CASCADE
     )

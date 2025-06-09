@@ -10,16 +10,14 @@ const GetLesson = () => {
     return (
         <div>
             <h2>Lessons</h2>
-            <p>Here are your Lessons assignments.</p>
-
             {classList.length === 0 ? (
                 <p>No classes found.</p>
             ) : (
-                <ul>
+                <ol>
                     {classList.map((cls) => (
-                        <li key={cls.id || cls.classId}>{cls.className}</li>
+                        <li key={cls.id}> {cls.className} {cls.teacherName}  </li>
                     ))}
-                </ul>
+                </ol>
             )}
         </div>
     );
