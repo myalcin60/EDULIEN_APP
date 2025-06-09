@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-
-
 const {endpoints} =require("../server/config/index");
 
 const app = express();
@@ -29,7 +27,7 @@ app.use("/api", classStudentRoutes);
 
  
 
-// Tablo oluşturucular
+// Table creators
  const createUserTable = require("./models/userModel");
  const createClassTable = require("./models/classModel");
  const createClassStudentsTable = require("./models/classStudentModel");
@@ -37,7 +35,7 @@ app.use("/api", classStudentRoutes);
 
  app.use('/api', require("./routes/classRoutes"));
 
-// Tabloları oluştur
+// Creat tables
  createUserTable();
  createClassTable();
  createClassStudentsTable();

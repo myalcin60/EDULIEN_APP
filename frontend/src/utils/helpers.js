@@ -1,4 +1,8 @@
 import { toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import TeacherDashboard from "../pages/Teacher/TeacherDashboard";
+import StudentDashboard from "../pages/Student/StudentDashboard";
+import { useNavigate } from 'react-router-dom';
 
 export const showToast = (message, type = 'info') => {
   const config = { position: 'top-right', autoClose: 3000 };
@@ -31,4 +35,42 @@ export const handleError = (error, contextMessage = 'Error occurred') => {
 // Confirm dialog helper
 export const confirmDialog = (message) => {
   return window.confirm(message);
+};
+
+// Dashboard
+export const Dashboard = () => {
+  const [role, setRole] = useState('');
+  const navigate = useNavigate();
+
+useEffect(() => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  setRole(user?.role || '');
+}, []);
+
+  const handleClick = () => {
+if(role === 'student'){
+navigate("/student-dashboard");
+}
+else{
+navigate("/teacher-dashboard");
+}
+    
+  };
+
+  return (
+    <div 
+      onClick={handleClick}
+      style={{
+        cursor: 'pointer',
+        padding: '10px 20px',
+        border: '1px solid #ddd',
+        borderRadius: '5px',
+        backgroundColor: '#f8f9fa',
+        display: 'inline-block',
+        margin: '5px'
+      }}
+    >
+      DASHBOARD
+    </div>
+  );
 };

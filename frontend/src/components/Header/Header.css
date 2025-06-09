@@ -56,6 +56,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 10px;
+  gap: 0.5rem;
 }
 
 .account-img {
@@ -81,6 +82,7 @@
   cursor: pointer;
   color: var(--dark);
   padding: 5px 0;
+  font-size: small;
 }
 
 
@@ -128,5 +130,6 @@
   .hamburger {
     display: none;
   }
+ 
  
 }

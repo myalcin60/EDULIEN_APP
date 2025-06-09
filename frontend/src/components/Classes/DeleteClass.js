@@ -1,6 +1,6 @@
 import React from 'react';
 import { config, endpoints, frontendMessages } from '../../config/index';
-import { showToast, handleError, confirmDialog} from '../../utils/helpers';
+import { showToast, handleError, confirmDialog} from '../../utils/Helpers';
 
 
 function DeleteClass({ classId, teacherId, currentUserId, onDelete }) {

@@ -8,9 +8,8 @@ import home_page from '../../assets/home_page.png';
 function SignUp() {
   const [role, setRole] = useState(config.ROLES.STUDENT); // default role
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();  // Do not refresh the page
 
     try {
       const res = await fetch(`${config.API_BASE_URL}${endpoints.USER.REGISTER}`,

@@ -1,0 +1,9 @@
+.container{
+    width: 80%;
+    margin-left: 10%;
+   h2{
+    margin-top: 3%;
+    margin-left: 3%;
+    cursor: pointer;
+   }
+}

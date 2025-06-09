@@ -38,7 +38,7 @@ function Login() {
       const data = await response.json();
 
 
-      if (response.ok) {
+          if (response.ok) {
         navigate(endpoints.DASHBOARD);
         toast.success(frontendMessages.success.login, { autoClose: 2000 });
 
@@ -53,7 +53,7 @@ function Login() {
 
           navigate(endpoints.TEACHER_DASHBOARD);
         }
-      } else {
+      }else {
         alert(data.error || frontendMessages.error.login);
       }
     } catch (error) {
