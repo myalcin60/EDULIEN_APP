@@ -25,7 +25,7 @@ function DeleteClass({ classId, teacherId, currentUserId, onDelete }) {
 
       if (response.ok) {
         showToast(frontendMessages.success.deleteClass, 'success');
-        onDelete(); // sınıf listesini güncelle
+        onDelete(); 
       } else {
         showToast(data.message || frontendMessages.error.deletion, 'error');
       }
