@@ -1,7 +1,5 @@
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
-import TeacherDashboard from "../pages/Teacher/TeacherDashboard";
-import StudentDashboard from "../pages/Student/StudentDashboard";
 import { useNavigate } from 'react-router-dom';
 
 export const showToast = (message, type = 'info') => {
@@ -63,7 +61,7 @@ navigate("/teacher-dashboard");
       style={{
         cursor: 'pointer',
         padding: '10px 20px',
-        border: '1px solid #ddd',
+        border: '1px solid #F4F6F9',
         borderRadius: '5px',
         backgroundColor: '#f8f9fa',
         display: 'inline-block',

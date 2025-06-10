@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { config, endpoints, headers, frontendMessages } from '../../config';
 import DeleteClass from './DeleteClass';
 import UpdateClass from './UpdateClass';
@@ -9,7 +9,7 @@ import { UserProfil, GetClasses } from '../../utils/UserData';
 function CreateClass() {
   const [className, setClassName] = useState('');
   const { userData } = UserProfil();
-  const { classList, loading, refreshClasses } = GetClasses(userData?.id);
+  const { classList, refreshClasses } = GetClasses(userData?.id);
 
   if (!userData) return <div>Loading...</div>;
 
@@ -67,7 +67,7 @@ function CreateClass() {
         <ul>
           {classList.map((cls) => (
             <li key={cls.classId}>
-              <Link to={`/classes/${cls.classId}`} style={{ marginRight: '10px' }}>
+              <Link to={`/classes/${cls.classId}`} >
                 {cls.className}
               </Link>
               {cls.teacherId === userData.id && (
