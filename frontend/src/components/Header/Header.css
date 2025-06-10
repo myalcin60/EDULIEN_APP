@@ -7,7 +7,7 @@
   position: relative;
   z-index: 1000;
 
-  .logo>a {
+  .logo >a {
     display: flex;
     align-items: center;
     

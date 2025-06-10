@@ -21,27 +21,27 @@ const TeacherDashboard = () => {
             </h2>
             <div className=" menu flex">
                 <div className="left-menu" >
-                    <ul className="list-group">
-                        <li className="list-group-item list-group-item-action"
+                    <div className="list-group">
+                        <button className="list-group-item list-group-item-action"
                             onClick={() => setSelectedComponent("Profile")}
                         >
                             PROFILE
-                        </li>
-                        <li
+                        </button>
+                        <button
                             className="list-group-item list-group-item-action"
                             onClick={() => setSelectedComponent("CreateClass")}
 
                         >
                             CLASSES
-                        </li>
-                        <li
+                        </button>
+                        <button
                             className="list-group-item list-group-item-action"
                             onClick={() => setSelectedComponent("Homework")}
 
                         >
                             HOMEWORK
-                        </li>
-                    </ul>
+                        </button>
+                    </div>
                 </div>
                 <div className="right-menu">
                     {components[selectedComponent]}

@@ -22,7 +22,7 @@ function App() {
       <ToastProvider />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path={`${endpoints.SIGN_UP}`} element={<SignUp />} />
+        <Route path={`${endpoints.SIGN_UP}`} element={<SignUp />}/>
           <Route path={`${endpoints.STUDENT_DASHBOARD}`} element={<StudentDashboard />} />
           <Route path={`${endpoints.TEACHER_DASHBOARD}`} element={<TeacherDashboard />} />
           <Route path={`${endpoints.PROFILE}`} element={<Profile />} />

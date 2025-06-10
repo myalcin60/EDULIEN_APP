@@ -9,8 +9,9 @@ return (
 <a href="#">Privacy Policy</a>
 <a href="#">Terms of Use</a>
 <a href="#">Help</a>
-</div>
+</div >
 </footer>
 );
 }
+
 export default Footer;

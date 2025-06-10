@@ -1,63 +1,74 @@
 :root {
-    --primary: #3ABCF8;
-    --secondary: #63d4ff;
-    --accent: #FFCC00;
-    --accent-secondary: #ff7e67;
-    --light: #FFFFFF;
-    --dark: #505a69;
-    --gray: #F4F6F9;
-    --text: #505a69;
+  --primary: #3ABCF8;
+  --secondary: #63d4ff;
+  --accent: #FFCC00;
+  --accent-secondary: #ff7e67;
+  --light: #FFFFFF;
+  --dark: #505a69;
+  --gray: #F4F6F9;
+  --text: #505a69;
 
-    --success-color: #28a745;
-    --danger-color: #dc3545;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
 
-    --font-family : 'Goblin One' Tahoma, Geneva, Verdana, sans-serif;
+  --font-family: 'Goblin One' Tahoma, Geneva, Verdana, sans-serif;
 
-    --background-color:var(--gray);
-    
+  --background-color: var(--gray);
+
 }
+
 /* Genel yapı */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--gray);
-    color: var(--text-color);
-  }
-  
-  /* Inputs */
-  input {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  /* Buttons */
-  button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: var(--accent);
-    color: white;
-    transition: 0.3s;
-    font-size: small;
-  }
-  
-  button:hover {
-    background-color: var(--accent-secondary);
-  }
-  
-  /* Links */
-  a {
-    text-decoration: none;
-    color: inherit;
-    font-size: small;
-  }
-  
-  a:hover {
-    color: var(--accent-secondary);
-  }
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--gray);
+  color: var(--text-color);
+}
 
- 
+/* Inputs */
+input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+button {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--secondary);
+  color: white;
+  transition: 0.3s;
+  font-size: small;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--accent-secondary);
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: small;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+.box-shadow {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
