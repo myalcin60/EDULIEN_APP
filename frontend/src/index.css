@@ -1,11 +1,11 @@
 :root {
-    --primary: #4aa5e8;
+    --primary: #3ABCF8;
     --secondary: #63d4ff;
-    --accent: #ffb84d;
+    --accent: #FFCC00;
     --accent-secondary: #ff7e67;
-    --light: #f8fdff;
+    --light: #FFFFFF;
     --dark: #505a69;
-    --gray: #e8f4fc;
+    --gray: #F4F6F9;
     --text: #505a69;
 
     --success-color: #28a745;
@@ -20,7 +20,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
+    background-color: var(--gray);
     color: var(--text-color);
   }
   

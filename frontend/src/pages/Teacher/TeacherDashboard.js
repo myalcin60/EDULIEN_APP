@@ -19,7 +19,7 @@ const TeacherDashboard = () => {
             <h2 onClick={() => setSelectedComponent("Profile")}>
                 DASHBOARD
             </h2>
-            <div className="flex">
+            <div className=" menu flex">
                 <div className="left-menu" >
                     <ul className="list-group">
                         <li className="list-group-item list-group-item-action"
