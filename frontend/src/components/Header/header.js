@@ -48,12 +48,6 @@ function Header( setSelectedComponent) {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const handleProfile = () => {
-   
-       
-    setSelectedComponent('Profile');
-  };
-
   return (
     <header className="header flex">
       <div className="logo flex">

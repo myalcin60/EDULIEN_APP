@@ -72,4 +72,9 @@ a:hover {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+@media (max-width:769px){
+  button{
+    font-size: x-small;
+  }
+}
 
