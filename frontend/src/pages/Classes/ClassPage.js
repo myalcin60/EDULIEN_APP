@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { config, endpoints, frontendMessages } from '../../config';
 import './ClassPage.css'
-import { Dashboard } from '../../utils/Helpers';
+import { Dashboard } from '../../components/Dashboard/Dashboard';
 
 
 

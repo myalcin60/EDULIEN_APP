@@ -4,15 +4,14 @@ import './StudentDashboard.css';
 import Lesson from '../../components/Lesson/Lesson';
 import Homework from '../../components/Homework/Homework';
 
+
 const StudentDashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState("Profile");
 
 
   return (
     <div className="container">
-      <h2 onClick={() => setSelectedComponent("Profile")}>
-        DASHBORD
-      </h2>
+    
       <div className="menu flex">
         <div className="left-menu box-shadow">
           <div className="list-group">
