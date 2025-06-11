@@ -4,21 +4,23 @@ import CreateClass from "../../components/Classes/CreateClass";
 import Homework from '../../components/Homework/Homework';
 import "./TeacherDashboard.css";
 
+
 const TeacherDashboard = () => {
     const [selectedComponent, setSelectedComponent] = useState("Profile");
     const components = {
         Profile: <Profile />,
         CreateClass: <CreateClass />,
         Homework: <Homework />,
+        
     };
 
     return (
 
         <div className="container">
-
-            <h2 onClick={() => setSelectedComponent("Profile")}>
-                DASHBOARD
-            </h2>
+          <div>
+ 
+          </div>
+         
             <div className=" menu flex">
                 <div className="left-menu" >
                     <div className="list-group">
