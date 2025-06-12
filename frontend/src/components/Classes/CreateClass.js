@@ -35,6 +35,7 @@ function CreateClass() {
       if (response.ok) {
         showToast(frontendMessages.success.createClass, 'success');
         setClassName('');
+        refreshClasses();
     
       } else {
         showToast(data.message || frontendMessages.error.creation, 'error');
@@ -60,7 +61,7 @@ function CreateClass() {
         <label>Teacher ID:</label>
         <input type="text" value={userData.id} readOnly />
 
-        <button type="submit">Create</button>
+        <button type="submit"  style={{marginBottom:'3%' }}>Create</button>
       </form>
 
       <div>
