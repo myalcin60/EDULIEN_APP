@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const [role, setRole] = useState('');
   const navigate = useNavigate();
 
@@ -35,3 +35,5 @@ navigate("/teacher-dashboard");
     </div>
   );
 };
+
+export default Dashboard;

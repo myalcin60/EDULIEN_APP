@@ -11,16 +11,15 @@ const TeacherDashboard = () => {
         Profile: <Profile />,
         CreateClass: <CreateClass />,
         Homework: <Homework />,
-        
+
     };
+  
 
     return (
 
         <div className="container">
-          <div>
- 
-          </div>
-         
+           
+
             <div className=" menu flex">
                 <div className="left-menu" >
                     <div className="list-group">

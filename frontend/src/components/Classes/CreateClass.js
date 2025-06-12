@@ -64,15 +64,15 @@ function CreateClass() {
       </form>
 
       <div>
-        <ul>
+        <div className='lesson-grid'>
           {classList.map((cls) => (
-            <li key={cls.classId}>
+            <div key={cls.classId} className='lesson-card'>
               <Link to={`/classes/${cls.classId}`} >
                 {cls.className}
               </Link>
               {cls.teacherId === userData.id && (
                 <>
-                  <DeleteClass
+                  <DeleteClass 
                     classId={cls.classId}
                     teacherId={cls.teacherId}
                     currentUserId={userData.id}
@@ -87,9 +87,9 @@ function CreateClass() {
 
 
               )}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
