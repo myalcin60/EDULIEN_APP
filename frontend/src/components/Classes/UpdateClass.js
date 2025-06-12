@@ -40,11 +40,11 @@ const handleSave = async () => {
   return (
     <>
       {!isEditing ? (
-        <button onClick={() => setIsEditing(true)} style={{ marginLeft: '8px' }}>
+        <button onClick={() => setIsEditing(true)} >
           Update
         </button>
       ) : (
-        <span style={{ marginLeft: '8px' }}>
+        <span>
           <input
             type="text"
             value={newClassName}

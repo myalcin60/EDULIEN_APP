@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { config, endpoints, frontendMessages } from '../../config';
 import './ClassPage.css'
-import { Dashboard } from '../../components/Dashboard/Dashboard';
-
+import  Dashboard  from '../../components/Dashboard/Dashboard';
 
 
 const ClassPage = () => {
@@ -104,7 +103,7 @@ const ClassPage = () => {
           <ol>
             {students.map((student, index) => (
               <li key={index}>
-                {student.studentId} {"    "} {student.studentName} {'.........'}{student.studentEmail}
+                {student.studentId}  {student.studentName} {student.studentEmail}
               </li>
             ))}
           </ol>

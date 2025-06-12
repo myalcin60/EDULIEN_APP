@@ -1,6 +1,4 @@
 import { toast } from "react-toastify";
-import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 
 export const showToast = (message, type = 'info') => {
   const config = { position: 'top-right', autoClose: 3000 };
