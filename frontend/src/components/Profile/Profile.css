@@ -1,7 +1,16 @@
 .profile {
+    display: inline-block;
     padding: 20px;
+    width: 100%;
 p {
     font-size: medium;
-    padding-left:3%;
+    padding-left:4%;
+}
+.photo{
+    margin: 3% 0 3% 3%;
+    background-color: var(--gray);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 } 

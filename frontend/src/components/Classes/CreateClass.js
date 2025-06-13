@@ -47,8 +47,9 @@ function CreateClass() {
 
   return (
     <div className="container">
-      <h2>Create Class</h2>
-      <form onSubmit={handleSubmit}>
+      
+      <form className='class-creat-form' onSubmit={handleSubmit}>
+        <h2>Create Class</h2>
         <label>Class Name:</label>
         <input
           type="text"
