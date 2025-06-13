@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {config,endpoints, frontendMessages} from '../../config/index';
+import { config, endpoints, frontendMessages } from '../../config/index';
 import "./Profile.css";
 
 
@@ -9,7 +9,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (!email) return;
-    
+
 
     fetch(`${config.API_BASE_URL}${endpoints.PROFILE}/${email}`)
       .then((res) => res.json())
@@ -26,13 +26,17 @@ const Profile = () => {
   }
 
   return (
-    <div className="profile" >
-      <h2>Profile</h2>
-      <p><strong>Name :</strong> {userData.firstName}</p>
-      <p><strong>Sur Name :</strong> {userData.lastName}</p>
-      <p><strong>Email :</strong> {userData.email}</p>
-      <p><strong>Role :</strong> {userData.role}</p>
-      <p><strong>Id :</strong> {userData.id}</p>
+    <div className="profile flex" >
+      <div className="photo">
+      </div>
+      <div>
+        <p><strong>Name :</strong> {userData.firstName}</p>
+        <p><strong>Sur Name :</strong> {userData.lastName}</p>
+        <p><strong>Email :</strong> {userData.email}</p>
+        <p><strong>Role :</strong> {userData.role}</p>
+        <p><strong>Id :</strong> {userData.id}</p>
+      </div>
+
     </div>
   );
 };
