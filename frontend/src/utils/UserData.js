@@ -75,3 +75,11 @@ export const GetClasses = (userId) => {
     return { classList, loading, refreshClasses };
 };
 
+// user dashboard
+export const HandleUser= (userData, navigate) =>{
+    if (userData?.role === 'student') {
+    navigate("/student-dashboard");
+  } else if (userData?.role === 'teacher') {
+    navigate("/teacher-dashboard");
+  }
+};

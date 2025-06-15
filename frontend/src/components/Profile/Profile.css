@@ -1,7 +1,6 @@
 .profile {
-    display: inline-block;
     padding: 20px;
-    width: 100%;
+    width: 80%;
 p {
     font-size: medium;
     padding-left:4%;
@@ -14,3 +13,25 @@ p {
     border-radius: 50%;
 }
 } 
+
+@media(max-width : 769px){
+   .profile{
+    display: block !important;
+    
+   }
+       
+   
+   .profile-info {
+  background-color: aquamarine;
+  > p{
+        font-size:small !important;
+        
+        
+       
+    }
+
+   }
+   
+   
+ 
+}

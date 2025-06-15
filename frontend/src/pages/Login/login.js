@@ -38,7 +38,7 @@ function Login() {
       const data = await response.json();
 
 
-          if (response.ok) {
+      if (response.ok) {
         navigate(endpoints.DASHBOARD);
         toast.success(frontendMessages.success.login, { autoClose: 2000 });
 
@@ -53,7 +53,7 @@ function Login() {
 
           navigate(endpoints.TEACHER_DASHBOARD);
         }
-      }else {
+      } else {
         alert(data.error || frontendMessages.error.login);
       }
     } catch (error) {
@@ -64,63 +64,57 @@ function Login() {
 
 
   return (
-    <div class="container login-page flex">
-      
+    <div class="login-page flex">      
       <div class="flex">
-        <div class="login-container">
-          {/* Role selection */}
-          <div className="role-toggle">
-            <button
-              className={selectedRole === config.ROLES.STUDENT ? 'active' : ''}
-              onClick={() => handleRoleClick(config.ROLES.STUDENT)}
-            >
-              Student
-            </button>
-            <button
-              className={selectedRole === config.ROLES.TEACHER ? 'active' : ''}
-              onClick={() => handleRoleClick(config.ROLES.TEACHER)}
-            >
-              Teacher
-            </button>
+          <div class="login-container ">
+            {/* Role selection */}
+            <div className="role-toggle">
+              <button
+                className={selectedRole === config.ROLES.STUDENT ? 'active' : ''}
+                onClick={() => handleRoleClick(config.ROLES.STUDENT)}
+              >
+                Student
+              </button>
+              <button
+                className={selectedRole === config.ROLES.TEACHER ? 'active' : ''}
+                onClick={() => handleRoleClick(config.ROLES.TEACHER)}
+              >
+                Teacher
+              </button>
+            </div>
+            {/* Login Form */}
+            <img
+              src={selectedRole === config.ROLES.STUDENT ? student : teacher
+              }
+              alt={selectedRole} className="role-image" />
+
+            <form onSubmit={handleLogin}>
+
+              <label>Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+
+              <label>Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+
+              <button type="submit">Log in</button>
+              <p>
+                Don't have an account? <a href={`${endpoints.SIGN_UP}`}>Sign up</a>
+              </p>
+            </form>
           </div>
-          {/* Login Form */}
-          <img
-            src={selectedRole === config.ROLES.STUDENT ? student : teacher
-            }
-            alt={selectedRole} className="role-image" />
-
-           <form onSubmit={handleLogin}>
-
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-
-            <button type="submit">Log in</button>
-            <p>
-              Don't have an account? <a href={`${endpoints.SIGN_UP}`}>Sign up</a>
-            </p>
-          </form>
+          <img class="image-homePage" src={home_page} alt='home_page' /> 
         </div>
-        <div class='image-homePage'>
-          <img src={home_page} alt='home_page' />
-        </div>
-      </div>
-
-
-
-
+       
     </div>
 
   );

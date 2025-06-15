@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { config, endpoints, frontendMessages } from '../../config';
 import './ClassPage.css'
-import  Dashboard  from '../../components/Dashboard/Dashboard';
-
+import Dashboard from '../../components/Dashboard/Dashboard';
 
 const ClassPage = () => {
   const { classId } = useParams();
@@ -37,8 +36,6 @@ const ClassPage = () => {
         console.error("Students could not be recruited:", err);
       });
   }, [classId]);
-
-
 
   const handleInvite = async (e) => {
     e.preventDefault();
@@ -79,11 +76,17 @@ const ClassPage = () => {
 
   return (
     <div className="container">
-      <Dashboard />
-      <p><strong>Class Name :</strong> {classInfo.className}</p>
-      <p><strong>Teacher:</strong> {classInfo.teacherName}</p>
+      <div className='flex'>
+        <Dashboard />
+        <div className='flex'>
+          <p><strong>Class Name :</strong> {classInfo.className}</p>
+         
+        </div>
+      </div>
 
-      <form onSubmit={handleInvite}>
+
+
+      <form onSubmit={handleInvite} className='flex invte-student box-shadow '>
         <h3>Invite Students</h3>
         <input
           type="email"
@@ -92,24 +95,38 @@ const ClassPage = () => {
           onChange={(e) => setStudentEmail(e.target.value)}
           required
         />
-        <button type="submit">Send invite</button>
+        <button type="submit">Send</button>
       </form>
 
-      <div >
-        <h3>Students</h3>
-        {students.length === 0 ? (
-          <p>There is'nt student.</p>
-        ) : (
-          <ol>
-            {students.map((student, index) => (
-              <li key={index}>
-                {student.studentId}  {student.studentName} {student.studentEmail}
-              </li>
-            ))}
-          </ol>
-
-        )}
-      </div>
+      <div className='invite-student box-shadow'>
+  <h3>Students</h3>
+  {students.length === 0 ? (
+    <p>There isn't any student.</p>
+  ) : (
+    <div className="table-container">
+      <table className='students-table'>
+        <thead>
+          <tr >
+            <th >Student ID</th>
+            <th >Name</th>
+            <th >Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((student, index) => (
+            <tr key={index} style={{
+              ':hover': { backgroundColor: '#f9f9f9' }
+            }}>
+              <td >{student.studentId}</td>
+              <td >{student.studentName}</td>
+              <td >{student.studentEmail}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</div>
     </div>
   );
 }

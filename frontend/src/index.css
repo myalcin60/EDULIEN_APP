@@ -17,15 +17,21 @@
 
 }
 
-/* Genel yapı */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: var(--gray);
   color: var(--text-color);
+  width: 100%;
+  overflow-x: hidden;
+}
+.flex {
+  display: flex;
+  justify-content: space-around;
 }
 
-/* Inputs */
+
 input {
   width: 100%;
   padding: 5px;
@@ -37,6 +43,8 @@ input {
 
 /* Buttons */
 button {
+  width: 100%;
+  margin-top: 10px;
   padding: 5px;
   border: none;
   border-radius: 4px;
@@ -46,7 +54,6 @@ button {
   transition: 0.3s;
   font-size: small;
   font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
@@ -73,6 +80,15 @@ a:hover {
     border-radius: 10px;
 }
 @media (max-width:769px){
+  table{
+    font-size: small
+  }
+  p{
+    font-size: small;
+  }
+  h3{
+    font-size: small;
+  }
   button{
     font-size: x-small;
   }

@@ -3,6 +3,7 @@ import './Header.css';
 import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.jpg';
 import account from '../../assets/account.png';
+import {UserProfil, HandleUser} from '../../utils/UserData';
 
 function Header( setSelectedComponent) {
   const [userEmail, setUserEmail] = useState(null);
@@ -10,7 +11,8 @@ function Header( setSelectedComponent) {
   const navRef = useRef(null);
   const hamburgerRef = useRef(null);
   const navigate = useNavigate();
-
+  const { userData } = UserProfil();
+ 
   useEffect(() => {
     const checkEmail = () => {
       const email = localStorage.getItem('userEmail');
@@ -39,12 +41,16 @@ function Header( setSelectedComponent) {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
-
+//Logout
   const handleLogout = () => {
     localStorage.removeItem('userEmail');
     setUserEmail(null);
     navigate('/');
   };
+const handleClick =() =>{
+  HandleUser(userData, navigate);
+};
+
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -65,7 +71,7 @@ function Header( setSelectedComponent) {
           {userEmail ? (
             <div className="account-info flex">
               <img className="account-img" src={account} alt="Account" />
-              <p className="user" >{userEmail}</p>
+              <a onClick={handleClick} className="user" >{userData?.firstName}</a>
               <button onClick={handleLogout} className="logout-button">Logout</button>
             </div>
           ) : (
