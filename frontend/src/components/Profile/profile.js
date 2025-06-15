@@ -29,7 +29,7 @@ const Profile = () => {
     <div className="profile flex" >
       <div className="photo">
       </div>
-      <div>
+      <div className="profile-info">
         <p><strong>Name :</strong> {userData.firstName}</p>
         <p><strong>Sur Name :</strong> {userData.lastName}</p>
         <p><strong>Email :</strong> {userData.email}</p>

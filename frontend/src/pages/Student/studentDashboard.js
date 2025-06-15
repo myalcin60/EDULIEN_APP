@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Profile from '../../components/Profile/Profile';
-import './StudentDashboard.css';
 import Lesson from '../../components/Lesson/Lesson';
 import Homework from '../../components/Homework/Homework';
 
@@ -27,8 +26,7 @@ const StudentDashboard = () => {
                 LESSON
               </button>
             </div>
-          </div>
-          <div>
+             <div>
             <button
               onClick={() => setSelectedComponent("Homework")}
             >
@@ -42,6 +40,8 @@ const StudentDashboard = () => {
               GRADE
             </button>
           </div>
+          </div>
+         
         </div>
         <div className="right-menu box-shadow">
           {selectedComponent === "Profile" && <Profile />}

@@ -1,37 +1,37 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [role, setRole] = useState('');
   const navigate = useNavigate();
 
-useEffect(() => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  setRole(user?.role || '');
-}, []);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setRole(user?.role || '');
+  }, []);
 
   const handleClick = () => {
-if(role === 'student'){
-navigate("/student-dashboard");
-}
-else{
-navigate("/teacher-dashboard");
-}
-    
+    if (role === 'student') {
+      navigate("/student-dashboard");
+    }
+    else {
+      navigate("/teacher-dashboard");
+    }
+
   };
 
   return (
-    <div className='dashboard'
+    <div className='dashboard box-shadow'
       onClick={handleClick}
       style={{
         cursor: 'pointer',
-        padding: '10px 20px',
+        padding: '5px 10px',
         borderRadius: '5px',
         backgroundColor: '#FFFFFF',
-        display: 'inline-block',      
+        textAlign: 'center'
       }}
     >
-      DASHBOARD
+    DASHBOARD
     </div>
   );
 };

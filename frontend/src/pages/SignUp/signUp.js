@@ -53,7 +53,7 @@ function SignUp() {
 
 
   return (
-    <div className="container-fluid signUp-page flex" >
+    <div className="signUp-page flex" >
       <div className='flex'>
         <div className="signup-container">
 
@@ -83,9 +83,9 @@ function SignUp() {
             Already have an account? <Link to="/">Log in</Link>
           </p>
         </div>
-        <div className='image-homePage'>
-          <img src={home_page}/>
-        </div>
+        
+          <img className='image-homePage' src={home_page}/>
+      
       </div>
 
 

@@ -25,7 +25,7 @@ function CreateClass() {
         },
         body: JSON.stringify({
           className,
-          teacherName: userData.firstName + " "+ userData.lastName,
+          teacherName: userData?.firstName + " "+ userData?.lastName,
           teacherId: userData.id,
         }),
       });
@@ -58,7 +58,7 @@ function CreateClass() {
           required
         />
         <label>Teacher Name:</label>
-        <input type="text" value={userData.firstName + " "+ userData.lastName} readOnly />
+        <input type="text" value={userData?.firstName + " "+ userData?.lastName} readOnly />
         <label>Teacher ID:</label>
         <input type="text" value={userData.id} readOnly />
 
