@@ -1,55 +1,79 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Profile from '../../components/Profile/Profile';
 import Lesson from '../../components/Lesson/Lesson';
 import Homework from '../../components/Homework/Homework';
-
+import './StudentDashboard.css';
+import { Hamburger } from '../../utils/Helpers';
 
 const StudentDashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState("Profile");
 
+  const components = {
+    Profile: <Profile />,
+    Lesson: <Lesson />,
+    Homework: <Homework />,
+
+  };
+  const {
+    isOpen,
+    toggleMenu,
+    navRef,
+    hamburgerRef,
+    setIsOpen,
+  } = Hamburger();
 
   return (
     <div className="container">
-    
       <div className="menu flex">
-        <div className="left-menu box-shadow">
+        <button ref={hamburgerRef} className="hamburger-left" onClick={toggleMenu}>
+          ☰
+        </button>
+        <div ref={navRef} className={`left-menu box-shadow ${isOpen ? 'open' : ''}`}>
           <div className="list-group">
-            <div>
-              <button onClick={() => setSelectedComponent("Profile")} >
-                PROFILE
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => setSelectedComponent("Lesson")}
-              >
-                LESSON
-              </button>
-            </div>
-             <div>
             <button
-              onClick={() => setSelectedComponent("Homework")}
+              onClick={() => {
+                setSelectedComponent("Profile");
+                setIsOpen(false); // Mobilde seçim yapınca menüyü kapat
+              }}
+              className={selectedComponent === "Profile" ? "active" : ""}
+            >
+              PROFILE
+            </button>
+            <button
+              onClick={() => {
+                setSelectedComponent("Lesson");
+                setIsOpen(false);
+              }}
+              className={selectedComponent === "Lesson" ? "active" : ""}
+            >
+              LESSON
+            </button>
+            <button
+              onClick={() => {
+                setSelectedComponent("Homework");
+                setIsOpen(false);
+              }}
+              className={selectedComponent === "Homework" ? "active" : ""}
             >
               HOMEWORK
             </button>
-          </div>
-          <div>
             <button
-              onClick={() => setSelectedComponent("Homework")}
+              onClick={() => {
+                setSelectedComponent("Grade");
+                setIsOpen(false);
+              }}
+              className={selectedComponent === "Grade" ? "active" : ""}
             >
               GRADE
             </button>
           </div>
-          </div>
-         
         </div>
+
         <div className="right-menu box-shadow">
-          {selectedComponent === "Profile" && <Profile />}
-          {selectedComponent === "Lesson" && <Lesson />}
-          {selectedComponent === "Homework" && <Homework />}
+          {components[selectedComponent]}
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

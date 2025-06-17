@@ -4,12 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.jpg';
 import account from '../../assets/account.png';
 import {UserProfil, HandleUser} from '../../utils/UserData';
+import { Hamburger } from '../../utils/Helpers';
 
 function Header( setSelectedComponent) {
   const [userEmail, setUserEmail] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const navRef = useRef(null);
-  const hamburgerRef = useRef(null);
   const navigate = useNavigate();
   const { userData } = UserProfil();
  
@@ -24,23 +22,15 @@ function Header( setSelectedComponent) {
     return () => window.removeEventListener('storage', checkEmail);
   }, []);
 
-  // Menü dışına tıklanınca kapat
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        isOpen &&
-        navRef.current &&
-        !navRef.current.contains(e.target) &&
-        hamburgerRef.current &&
-        !hamburgerRef.current.contains(e.target)
-      ) {
-        setIsOpen(false);
-      }
-    };
+     const {
+          isOpen,
+          toggleMenu,
+          navRef,
+          hamburgerRef,
+          setIsOpen,
+      } = Hamburger();
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
+
 //Logout
   const handleLogout = () => {
     localStorage.removeItem('userEmail');
@@ -52,7 +42,7 @@ const handleClick =() =>{
 };
 
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  
 
   return (
     <header className="header flex">
@@ -84,7 +74,7 @@ const handleClick =() =>{
       </nav>
 
       <button ref={hamburgerRef} className="hamburger" onClick={toggleMenu}>
-        ☰
+        <img className="account-img" src={account} alt="Account" />
       </button>
     </header>
   );
