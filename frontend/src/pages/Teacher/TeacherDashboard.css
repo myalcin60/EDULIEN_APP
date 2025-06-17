@@ -7,7 +7,8 @@
       border-radius: 5px;
       padding: 5px;
    }
-   }
+}
+
 .left-menu {
    padding: 0 2% 0 2%;
    min-height: 100vh;
@@ -28,7 +29,7 @@
    background-color: var(--light);
    border-radius: 5px;
    font-weight: bold;
-   
+
 }
 
 .menu {
@@ -37,27 +38,29 @@
 
 }
 
+.list-group button.active {
+   background: var(--accent);
+   color: white;
+}
+
+
 @media (max-width:769px) {
    h2 {
       font-size: small;
    }
-     .left-menu {
-         width: 20%;
-         min-height: auto;
-         padding: 5px;
 
-      }
-      .right-menu {
-         width:100%;
-         font-size: small;
-         padding-bottom: 16px;
-      }
+   .right-menu {
+      width: 100%;
+      font-size: small;
+      padding-bottom: 16px;
+      margin-top: 12%;
+   }
 
    .menu {
       display: flex;
       flex-direction: column;
       font-size: small;
-      
+
    }
 
 }
